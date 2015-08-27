@@ -2,7 +2,7 @@ package cpDatos;
 
 public class caballo extends piezas{
 	private String color;
-	private String nombre;
+	private int nombre;
 	
 	
 	public String getColor() {
@@ -11,11 +11,12 @@ public class caballo extends piezas{
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public String getNombre() {
+	public int getNombre() {
 		return nombre;
 	}
-	public void setNombre(String nombre) {
+	public void setNombre(int nombre) {
 		this.nombre = nombre;
 	}
+
 
 }

@@ -3,13 +3,13 @@ package cpDatos;
 public class alfil extends piezas {
 
 	private String color;
-	private String nombre;
+	private int nombre;
 
-	public String getNombre() {
+	public int getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
+	public void setNombre(int nombre) {
 		this.nombre = nombre;
 	}
 
