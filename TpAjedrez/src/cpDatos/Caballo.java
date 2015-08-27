@@ -1,6 +1,6 @@
 package cpDatos;
 
-public class Caballo extends piezas{
+public class Caballo extends Piezas{
 	private String color;
 	private int nombre;
 	

@@ -1,6 +1,6 @@
 package cpDatos;
 
-public class peon extends piezas{
+public class Peon extends Piezas{
 
 	private String color;
 	private int nombre;
