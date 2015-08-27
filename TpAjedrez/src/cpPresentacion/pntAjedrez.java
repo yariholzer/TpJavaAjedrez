@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
@@ -19,6 +20,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class pntAjedrez extends JFrame {
 
@@ -50,6 +53,12 @@ public class pntAjedrez extends JFrame {
 	 * Create the frame.
 	 */
 	public pntAjedrez() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				guardarPartida();
+			}
+		});
 		setTitle("Juego de Ajedrez");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -164,6 +173,15 @@ public class pntAjedrez extends JFrame {
 		
 		String color = "BLANCO";
 		ctrl.inicializar(color);
+		
+	}
+	
+	protected void guardarPartida() {
+		
+		int opcion;
+		opcion = JOptionPane.YES_NO_CANCEL_OPTION;
+		JOptionPane.showConfirmDialog(null,"¿Desea guardar la partida antes de salir?","Guardar",opcion);
+		if (opcion == JOptionPane.YES_OPTION){};
 		
 	}
 }
