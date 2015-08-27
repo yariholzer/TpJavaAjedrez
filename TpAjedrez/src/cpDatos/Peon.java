@@ -18,4 +18,6 @@ public class Peon extends Piezas{
 		this.color = color;
 	}
 	
+	
+	
 }
