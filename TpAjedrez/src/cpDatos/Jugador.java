@@ -1,6 +1,6 @@
 package cpDatos;
 
-public class jugador {
+public class Jugador {
 	private int dni;
 
 	public int getDni() {

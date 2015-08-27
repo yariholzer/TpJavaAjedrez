@@ -1,6 +1,6 @@
 package cpDatos;
 
-public class alfil extends piezas {
+public class Alfil extends piezas {
 
 	private String color;
 	private int nombre;
