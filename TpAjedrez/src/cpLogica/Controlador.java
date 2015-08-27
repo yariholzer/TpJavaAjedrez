@@ -17,14 +17,14 @@ public class Controlador {
 		String fila1, fila2, posRey, posReina, posicion;
 		
 		if (color.equals("BLANCO")) {
-			fila1 = "A";
-			fila2 = "B";
+			fila1 	 = "A";
+			fila2 	 = "B";
 			posRey	 = "A4";
 			posReina = "A5";
 			
 		} else {
-			fila1 = "H";
-			fila2 = "G";
+			fila1 	 = "H";
+			fila2 	 = "G";
 			posRey	 = "H5";
 			posReina = "H4";
 		}

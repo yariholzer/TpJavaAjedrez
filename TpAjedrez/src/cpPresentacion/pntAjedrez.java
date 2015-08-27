@@ -12,8 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
+
+import cpLogica.Controlador;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class pntAjedrez extends JFrame {
 
@@ -23,6 +28,7 @@ public class pntAjedrez extends JFrame {
 	private JTextField txtTurno;
 	private JTextField txtOrigen;
 	private JTextField txtDestino;
+	Controlador ctrl = new Controlador();
 
 	/**
 	 * Launch the application.
@@ -56,8 +62,11 @@ public class pntAjedrez extends JFrame {
 		JLabel lblNegras = new JLabel("Negras:");
 		
 		JButton btnJugar = new JButton("Jugar");
-		btnJugar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnJugar.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				
+				btnJugarClicked();
+				
 			}
 		});
 		
@@ -149,5 +158,12 @@ public class pntAjedrez extends JFrame {
 					.addContainerGap(28, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+
+	protected void btnJugarClicked() {
+		
+		String color = "BLANCO";
+		ctrl.inicializar(color);
+		
 	}
 }
