@@ -22,12 +22,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JTable;
 
 public class pntAjedrez extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtBlancas;
-	private JTextField txtNegras;
 	private JTextField txtTurno;
 	private JTextField txtOrigen;
 	private JTextField txtDestino;
@@ -66,19 +65,6 @@ public class pntAjedrez extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblBlancas = new JLabel("Blancas:");
-		
-		JLabel lblNegras = new JLabel("Negras:");
-		
-		JButton btnJugar = new JButton("Jugar");
-		btnJugar.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				
-				btnJugarClicked();
-				
-			}
-		});
-		
 		JLabel lblTurno = new JLabel("Turno:");
 		
 		JLabel lblOrigen = new JLabel("Posicion Origen:");
@@ -86,12 +72,6 @@ public class pntAjedrez extends JFrame {
 		JLabel lblDestino = new JLabel("Posicion Destino:");
 		
 		JButton btnMover = new JButton("Mover");
-		
-		txtBlancas = new JTextField();
-		txtBlancas.setColumns(10);
-		
-		txtNegras = new JTextField();
-		txtNegras.setColumns(10);
 		
 		txtTurno = new JTextField();
 		txtTurno.setColumns(10);
@@ -105,79 +85,43 @@ public class pntAjedrez extends JFrame {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 					.addContainerGap()
+					.addComponent(lblTurno)
+					.addGap(18)
+					.addComponent(txtTurno, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(83)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblDestino, Alignment.LEADING)
+						.addComponent(lblOrigen, Alignment.LEADING))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblBlancas)
-							.addGap(18)
-							.addComponent(txtBlancas, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
-							.addComponent(btnJugar)
-							.addGap(31))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblOrigen)
-								.addComponent(lblDestino))
-							.addGap(14)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtDestino, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-									.addGap(10)
-									.addComponent(btnMover)))
-							.addGap(16))
-						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNegras)
-								.addComponent(lblTurno))
-							.addGap(18)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(txtTurno)
-								.addComponent(txtNegras, GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
-							.addContainerGap(240, Short.MAX_VALUE))))
+							.addGap(10)
+							.addComponent(btnMover))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtDestino, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(20)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnJugar)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblBlancas)
-							.addComponent(txtBlancas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNegras)
-						.addComponent(txtNegras, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(37)
+					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTurno)
-						.addComponent(txtTurno, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(txtTurno, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblOrigen))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblOrigen)
-						.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblDestino)
 						.addComponent(txtDestino, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnMover)
-					.addContainerGap(28, Short.MAX_VALUE))
+					.addContainerGap(156, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
-	}
-
-	protected void btnJugarClicked() {
-		
-		String color = "BLANCO";
-		ctrl.inicializar(color);
-		color = "NEGRO"; 
-		ctrl.inicializar(color);
-		//String ubicacion = "B1";
-		//ctrl.filasColumnas(ubicacion);
-		System.out.print(ctrl.retornarTablero());
 	}
 	
 	protected void guardarPartida() {
