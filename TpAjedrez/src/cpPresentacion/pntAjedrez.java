@@ -177,7 +177,7 @@ public class pntAjedrez extends JFrame {
 		ctrl.inicializar(color);
 		//String ubicacion = "B1";
 		//ctrl.filasColumnas(ubicacion);
-		
+		System.out.print(ctrl.retornarTablero());
 	}
 	
 	protected void guardarPartida() {

@@ -25,8 +25,8 @@ public class Controlador {
 		} else {
 			fila1 	 = "8";
 			fila2 	 = "7";
-			posRey	 = "e8";
-			posReina = "d8";
+			posRey	 = "d8";
+			posReina = "e8";
 		}
 		
 		// setear peones
@@ -46,7 +46,7 @@ public class Controlador {
 		
 		for (char i = 'a'; i <= 'h'; i++) {
 			switch (i) {
-			case 'a':
+			case 'a': case 'h':
 				posicion = i + fila1;
 				Torre torre= new Torre();
 				torre.setColor(color);
@@ -54,7 +54,7 @@ public class Controlador {
 				tablero.put(posicion,torre);
 				nombreTorre++;
 				break;
-			case 'b':
+			case 'b': case 'g':
 				posicion =  i + fila1;
 				Alfil alfil= new Alfil();
 				alfil.setColor(color);
@@ -62,7 +62,7 @@ public class Controlador {
 				tablero.put(posicion,alfil);
 				nombreAlfil++;
 				break;
-			case 'c':
+			case 'c': case 'f':
 				posicion = i + fila1;
 				Caballo caballo= new Caballo();
 				caballo.setColor(color);
@@ -86,10 +86,11 @@ public class Controlador {
 			
 		}
 		
-		System.out.print(tablero.toString());
 	}
 	
-	
+	public String retornarTablero(){
+		return tablero.toString();
+	};
 	
 	public String filasColumnas(String ubicacion ){
 		String fila =  ubicacion.substring(0,1);
