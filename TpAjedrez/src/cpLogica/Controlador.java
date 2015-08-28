@@ -13,59 +13,62 @@ public class Controlador {
 	public void inicializar(String color){
 		
 		//establecer posiciones segun color
-		
+		int nombrePeon=1,nombreTorre=1, nombreAlfil=1, nombreCaballo=1;
 		String fila1, fila2, posRey, posReina, posicion;
 		
 		if (color.equals("BLANCO")) {
-			fila1 	 = "A";
-			fila2 	 = "B";
-			posRey	 = "A4";
-			posReina = "A5";
+			fila1 	 = "1";
+			fila2 	 = "2";
+			posRey	 = "e1";
+			posReina = "d1";
 			
 		} else {
-			fila1 	 = "H";
-			fila2 	 = "G";
-			posRey	 = "H5";
-			posReina = "H4";
+			fila1 	 = "8";
+			fila2 	 = "7";
+			posRey	 = "e8";
+			posReina = "d8";
 		}
 		
 		// setear peones
 		
-		for (int i = 1; i <= 8; i++) {
+		
+		for (char i = 'a'; i <= 'h'; i++) {
 			
-			posicion = fila2 + i;
-			
+			posicion = i + fila2;
 			Peon peon= new Peon();
 			peon.setColor(color);
-			peon.setNombre(i);
+			peon.setNombre(nombrePeon);
 			tablero.put(posicion,peon);
-			
+			nombrePeon++;
 		} 
 		
 		//setear el resto
 		
-		for (int i = 1; i <= 8; i++) {
+		for (char i = 'a'; i <= 'h'; i++) {
 			switch (i) {
-			case 1:
-				posicion = fila1 + i;
+			case 'a':
+				posicion = i + fila1;
 				Torre torre= new Torre();
 				torre.setColor(color);
-				torre.setNombre(i);
+				torre.setNombre(nombreTorre);
 				tablero.put(posicion,torre);
+				nombreTorre++;
 				break;
-			case 2:
-				posicion = fila1 + i;
+			case 'b':
+				posicion =  i + fila1;
 				Alfil alfil= new Alfil();
 				alfil.setColor(color);
-				alfil.setNombre(i);
+				alfil.setNombre(nombreAlfil);
 				tablero.put(posicion,alfil);
+				nombreAlfil++;
 				break;
-			case 3:
-				posicion = fila1 + i;
+			case 'c':
+				posicion = i + fila1;
 				Caballo caballo= new Caballo();
 				caballo.setColor(color);
-				caballo.setNombre(i);
+				caballo.setNombre(nombreCaballo);
 				tablero.put(posicion,caballo);
+				nombreCaballo++;
 				break;
 			}
 			
@@ -80,6 +83,19 @@ public class Controlador {
 			tablero.put(posReina,reina);
 			
 		}
+		
+	}
+	
+	public String filasColumnas(String ubicacion ){
+		ubicacion = "B1";
+		String fila =  ubicacion.substring(0,1);
+		int columna = Integer.parseInt(ubicacion.substring(1,2));
+		System.out.print(fila);
+		System.out.print(" ");
+		System.out.print(columna);
+		
+		
+		return null;
 		
 	}
 	

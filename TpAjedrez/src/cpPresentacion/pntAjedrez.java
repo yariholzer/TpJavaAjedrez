@@ -171,8 +171,11 @@ public class pntAjedrez extends JFrame {
 
 	protected void btnJugarClicked() {
 		
-		String color = "BLANCO";
+		/*String color = "BLANCO";
 		ctrl.inicializar(color);
+		*/
+		String ubicacion = "B1";
+		ctrl.filasColumnas(ubicacion);
 		
 	}
 	
