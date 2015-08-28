@@ -30,7 +30,6 @@ public class pntAjedrez extends JFrame {
 	private JTextField txtTurno;
 	private JTextField txtOrigen;
 	private JTextField txtDestino;
-	Controlador ctrl = new Controlador();
 
 	/**
 	 * Launch the application.

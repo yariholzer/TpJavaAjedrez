@@ -104,5 +104,17 @@ public class Controlador {
 		return null;
 		
 	}
+
+	public void nuevaPartida(int dniBlancas, int dniNegras) {
+		
+		Jugador jugadorBlancas = new Jugador();
+		Jugador jugadorNegras  = new Jugador();
+		
+		jugadorBlancas.setDni(dniBlancas);
+		jugadorNegras.setDni(dniNegras);
+		
+		
+		
+	}
 	
 }

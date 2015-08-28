@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
+import cpLogica.Controlador;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,6 +20,7 @@ public class PntPrincipal {
 	private JFrame pntPrincipal;
 	private JTextField txtDniBlancas;
 	private JTextField txtDniNegras;
+	Controlador ctrl = new Controlador();
 
 	/**
 	 * Launch the application.
@@ -107,6 +110,14 @@ public class PntPrincipal {
 	}
 
 	protected void btnJugarClicked() {
+		
+		// cargar jugadores
+		
+		int dniBlancas = Integer.parseInt(txtDniBlancas.getText()); 
+		int dniNegras  = Integer.parseInt(txtDniNegras.getText());
+		
+		ctrl.nuevaPartida(dniBlancas,dniNegras);
+		
 		try {
 			pntAjedrez frame = new pntAjedrez();
 			frame.setVisible(true);
