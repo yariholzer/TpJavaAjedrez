@@ -17,5 +17,10 @@ public class Reina extends Piezas{
 	public void setNombre(int nombre) {
 		this.nombre = nombre;
 	}
+	@Override
+	public boolean validarMovimiento(String origen, String destino) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
