@@ -10,7 +10,12 @@ public class Controlador {
 
 	HashMap<String,Piezas> tablero =new HashMap<String,Piezas>();
 	
-	public void inicializar(String color){
+	@Override
+		public String hashCode(String s){
+			return Integer.toString(Integer.hashCode(generarFilas(s))*Integer.hashCode(generarColumnas(s)));
+	
+	}	
+		public void inicializar(String color){
 		
 		//establecer posiciones segun color
 		int nombrePeon=1,nombreTorre=1, nombreAlfil=1, nombreCaballo=1;
@@ -88,21 +93,21 @@ public class Controlador {
 		
 	}
 	
-	public String retornarTablero(){
-		return tablero.toString();
+	public void retornarTablero(){
+	 System.out.println(tablero.values());
 	};
 	
-	public String filasColumnas(String ubicacion ){
-		String fila =  ubicacion.substring(0,1);
-		int columna = Integer.parseInt(ubicacion.substring(1,2));
-		System.out.print("* ");
-		System.out.print(fila);
-		System.out.print("* ");
-		System.out.print(columna);
-		
-		
-		return null;
+	public int generarFilas(String ubicacion ){
+		int fila = Integer.parseInt(ubicacion.substring(1,2));
+				
+		return fila;
 		
 	}
 	
+	public int generarColumnas(String ubicacion ){
+		int columna = Integer.parseInt(ubicacion.substring(0,1));
+				
+		return columna;
+		
+	}
 }
