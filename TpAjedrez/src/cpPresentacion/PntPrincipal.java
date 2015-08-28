@@ -10,6 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class PntPrincipal {
 
 	private JFrame pntPrincipal;
@@ -59,6 +62,13 @@ public class PntPrincipal {
 		JLabel lblDniNegras = new JLabel("DNI Jugador Negras");
 		
 		JButton btnJugar = new JButton("JUGAR!!!");
+		btnJugar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				btnJugarClicked();
+				pntPrincipal.setVisible(false);
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(pntPrincipal.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -94,5 +104,14 @@ public class PntPrincipal {
 					.addContainerGap())
 		);
 		pntPrincipal.getContentPane().setLayout(groupLayout);
+	}
+
+	protected void btnJugarClicked() {
+		try {
+			pntAjedrez frame = new pntAjedrez();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
