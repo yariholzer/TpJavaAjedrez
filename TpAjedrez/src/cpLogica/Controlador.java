@@ -82,16 +82,21 @@ public class Controlador {
 			reina.setNombre(i);
 			tablero.put(posReina,reina);
 			
+		
+			
 		}
 		
+		System.out.print(tablero.toString());
 	}
 	
+	
+	
 	public String filasColumnas(String ubicacion ){
-		ubicacion = "B1";
 		String fila =  ubicacion.substring(0,1);
 		int columna = Integer.parseInt(ubicacion.substring(1,2));
+		System.out.print("* ");
 		System.out.print(fila);
-		System.out.print(" ");
+		System.out.print("* ");
 		System.out.print(columna);
 		
 		
