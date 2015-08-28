@@ -11,11 +11,38 @@ public class Controlador {
 	HashMap<String,Piezas> tablero =new HashMap<String,Piezas>();
 	
 	@Override
-		public String hashCode(String s){
-			return Integer.toString(Integer.hashCode(generarFilas(s))*Integer.hashCode(generarColumnas(s)));
+	public int hashCode(String s){
+		return (getFila(s)*getColumna(s));
 	
 	}	
-		public void inicializar(String color){
+	
+	public int getFila(String ubicacion ){
+		int fila = Integer.parseInt(ubicacion.substring(1,2));
+		return fila;
+		
+	}
+
+	public int getColumna(String ubicacion ){
+		int columna = Integer.parseInt(ubicacion.substring(0,1));
+				
+		return columna;
+		
+	}
+	
+	public void retornarTablero(){
+		 System.out.println(tablero.get("a1"));
+		};
+
+	public void nuevaPartida(int dniBlancas, int dniNegras) {
+			
+			Jugador jugadorBlancas = new Jugador();
+			Jugador jugadorNegras  = new Jugador();
+			
+			jugadorBlancas.setDni(dniBlancas);
+			jugadorNegras.setDni(dniNegras);
+		}	
+		
+	public void inicializar(String color){
 		
 		//establecer posiciones segun color
 		int nombrePeon=1,nombreTorre=1, nombreAlfil=1, nombreCaballo=1;
@@ -92,38 +119,5 @@ public class Controlador {
 		}
 		
 	}
-	
-	public void retornarTablero(){
-	 System.out.println(tablero.values());
-	};
-	
-	public int generarFilas(String ubicacion ){
-		int fila = Integer.parseInt(ubicacion.substring(1,2));
-				
-		return fila;
-		
-	}
 
-
-		
-		
-
-	
-	
-	
-	public void nuevaPartida(int dniBlancas, int dniNegras) {
-		
-		Jugador jugadorBlancas = new Jugador();
-		Jugador jugadorNegras  = new Jugador();
-		
-		jugadorBlancas.setDni(dniBlancas);
-		jugadorNegras.setDni(dniNegras);
-	}
-	
-	public int generarColumnas(String ubicacion ){
-		int columna = Integer.parseInt(ubicacion.substring(0,1));
-				
-		return columna;
-		
-	}
 }

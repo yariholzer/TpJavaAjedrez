@@ -113,10 +113,10 @@ public class PntPrincipal {
 		
 		// cargar jugadores
 		
-		int dniBlancas = Integer.parseInt(txtDniBlancas.getText()); 
-		int dniNegras  = Integer.parseInt(txtDniNegras.getText());
+		//int dniBlancas = Integer.parseInt(txtDniBlancas.getText()); 
+		//int dniNegras  = Integer.parseInt(txtDniNegras.getText());
 		
-		ctrl.nuevaPartida(dniBlancas,dniNegras);
+		//ctrl.nuevaPartida(dniBlancas,dniNegras);
 		
 		try {
 			pntAjedrez frame = new pntAjedrez();
@@ -124,5 +124,11 @@ public class PntPrincipal {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		ctrl.inicializar("BLANCO");
+		ctrl.inicializar("NEGRO");
+		ctrl.retornarTablero();
+
+		
 	}
 }
