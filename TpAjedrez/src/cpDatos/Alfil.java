@@ -2,15 +2,14 @@ package cpDatos;
 
 public class Alfil extends Piezas {
 
-	private String color;
-	private int nombre;
+	private String color, nombre= "A";
 
-	public int getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(int nombre) {
-		this.nombre = nombre;
+	public void setNombre(int nombreFicha) {
+		this.nombre = nombre + nombreFicha;
 	}
 
 	public String getColor() {

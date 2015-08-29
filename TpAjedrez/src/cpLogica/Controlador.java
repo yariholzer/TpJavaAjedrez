@@ -30,7 +30,10 @@ public class Controlador {
 	}
 	
 	public void retornarTablero(){
-		 System.out.println(tablero.get("a1"));
+		 System.out.println(tablero.get("d8").getNombre());
+		 System.out.println(tablero.get("e8").getNombre());
+		 System.out.println(tablero.get("d1").getNombre());
+		 System.out.println(tablero.get("e1").getNombre());
 		};
 
 	public void nuevaPartida(int dniBlancas, int dniNegras) {
@@ -106,12 +109,12 @@ public class Controlador {
 			
 			Rey rey= new Rey();
 			rey.setColor(color);
-			rey.setNombre(i);
+			rey.setNombre(1);
 			tablero.put(posRey,rey);
 			
 			Reina reina= new Reina();
 			reina.setColor(color);
-			reina.setNombre(i);
+			reina.setNombre(1);
 			tablero.put(posReina,reina);
 			
 		
