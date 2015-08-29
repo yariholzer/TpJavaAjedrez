@@ -19,7 +19,7 @@ public class Reina extends Piezas{
 	@Override
 	public boolean validarMovimiento(String origen, String destino) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

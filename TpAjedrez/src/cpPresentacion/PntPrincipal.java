@@ -20,7 +20,7 @@ public class PntPrincipal {
 	private JFrame pntPrincipal;
 	private JTextField txtDniBlancas;
 	private JTextField txtDniNegras;
-	Controlador ctrl = new Controlador();
+	public Controlador ctrl = new Controlador();
 
 	/**
 	 * Launch the application.
@@ -121,13 +121,14 @@ public class PntPrincipal {
 		try {
 			pntAjedrez frame = new pntAjedrez();
 			frame.setVisible(true);
+			pntPrincipal.setVisible(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		ctrl.inicializar("BLANCO");
 		ctrl.inicializar("NEGRO");
-		ctrl.retornarTablero();
+		ctrl.moverPiezas("d4", "b2");
 
 		
 	}

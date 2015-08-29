@@ -4,6 +4,8 @@ import cpDatos.*;
 
 import java.util.HashMap;
 
+import javax.swing.JOptionPane;
+
 import cpDatos.Piezas;
 
 public class Controlador {
@@ -124,9 +126,24 @@ public class Controlador {
 	}
 
 	public void moverPiezas(String origen, String destino){
-		
-		
-	}
+		if (tablero.containsKey(origen))
+			{
+				if (tablero.get(origen).validarMovimiento(origen, destino))
+					{
+						tablero.put(destino, tablero.get(origen));
+						tablero.put(origen, null);
+						JOptionPane.showMessageDialog(null, "la ficha fue movida");
+						
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "la ficha elegida no se puede mover de esa manera");
+						}
+					}else 
+					JOptionPane.showMessageDialog(null, "MOVIMIENTO NO VALIDO!! en la posicion de origen no hay ficha");
+				
+								
+			}
+
 
 }
-
+}

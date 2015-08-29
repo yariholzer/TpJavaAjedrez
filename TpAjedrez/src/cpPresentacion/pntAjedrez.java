@@ -15,6 +15,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 
 import cpLogica.Controlador;
+import cpPresentacion.PntPrincipal;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,7 +23,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JTable;
+
+import org.omg.CORBA.CTX_RESTRICT_SCOPE;
 
 public class pntAjedrez extends JFrame {
 
@@ -129,6 +133,7 @@ public class pntAjedrez extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
+	// falta relacionar con el ctrl en la pantalla principal para llamar al metodo moverPiezas
 	protected void realizarJugada(String origen, String destino) {
 		
 		String columnas;
@@ -154,7 +159,7 @@ public class pntAjedrez extends JFrame {
 			if(columnas.matches("[a-h]"))
 				{
 					if (1<= filas && filas <= 8)
-						{JOptionPane.showMessageDialog(null, "movimiento realizado");}
+						{JOptionPane.showMessageDialog(null, "movimiento realizado"); }
 					else JOptionPane.showMessageDialog(null, "la fila de destino ingresada es incorrecta ");
 			
 				}else 
