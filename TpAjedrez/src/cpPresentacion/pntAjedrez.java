@@ -71,6 +71,12 @@ public class pntAjedrez extends JFrame {
 		JLabel lblDestino = new JLabel("Posicion Destino:");
 		
 		JButton btnMover = new JButton("Mover");
+		btnMover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				realizarJugada((txtOrigen.getText()),(txtDestino.getText()));
+			}
+		});
 		
 		txtTurno = new JTextField();
 		txtTurno.setColumns(10);
@@ -123,6 +129,43 @@ public class pntAjedrez extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
+	protected void realizarJugada(String origen, String destino) {
+		
+		String columnas;
+		int filas;
+		boolean bandera=false;
+		columnas = origen.substring(0,1);
+		filas =Integer.parseInt(origen.substring(1,2));
+		
+		if(columnas.matches("[a-h]"))
+			{
+				if (1<= filas && filas <= 8)
+					{bandera = true;}
+				else JOptionPane.showMessageDialog(null, "la fila de origen ingresada es incorrecta ");
+		
+			}else 
+				JOptionPane.showMessageDialog(null, "la columna de origen ingresada es incorrecta ");
+		
+		if (bandera==true)
+			{
+			columnas = destino.substring(0,1);
+			filas =Integer.parseInt(destino.substring(1,2));
+			
+			if(columnas.matches("[a-h]"))
+				{
+					if (1<= filas && filas <= 8)
+						{JOptionPane.showMessageDialog(null, "movimiento realizado");}
+					else JOptionPane.showMessageDialog(null, "la fila de destino ingresada es incorrecta ");
+			
+				}else 
+					JOptionPane.showMessageDialog(null, "la columna de destino ingresada es incorrecta ");
+			
+			
+			
+			
+		}
+	}
+
 	protected void guardarPartida() {
 		
 		int opcion;

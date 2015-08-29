@@ -30,10 +30,10 @@ public class Controlador {
 	}
 	
 	public void retornarTablero(){
-		 System.out.println(tablero.get("d8").getNombre());
-		 System.out.println(tablero.get("e8").getNombre());
-		 System.out.println(tablero.get("d1").getNombre());
-		 System.out.println(tablero.get("e1").getNombre());
+		System.out.println(tablero.get("d8").getNombre());
+		System.out.println(tablero.get("e8").getNombre());
+		System.out.println(tablero.get("d1").getNombre());
+		System.out.println(tablero.get("e1").getNombre());
 		};
 
 	public void nuevaPartida(int dniBlancas, int dniNegras) {
@@ -123,4 +123,10 @@ public class Controlador {
 		
 	}
 
+	public void moverPiezas(String origen, String destino){
+		
+		
+	}
+
 }
+
