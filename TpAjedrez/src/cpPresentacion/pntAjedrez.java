@@ -15,7 +15,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 
 import cpLogica.Controlador;
-import cpPresentacion.PntPrincipal;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,6 +35,8 @@ public class pntAjedrez extends JFrame {
 	private JTextField txtTurno;
 	private JTextField txtOrigen;
 	private JTextField txtDestino;
+	
+	Controlador ctrl;
 
 	/**
 	 * Launch the application.
@@ -54,8 +56,10 @@ public class pntAjedrez extends JFrame {
 */
 	/**
 	 * Create the frame.
+	 * @param ctrl 
 	 */
-	public pntAjedrez() {
+	public pntAjedrez(Controlador c) {
+		ctrl =c;
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -161,7 +165,7 @@ public class pntAjedrez extends JFrame {
 			if(columnas.matches("[a-h]"))
 				{
 					if (1<= filas && filas <= 8)
-						{JOptionPane.showMessageDialog(null, "movimiento realizado"); }
+						{ctrl.moverPiezas(origen, destino);}
 					else JOptionPane.showMessageDialog(null, "la fila de destino ingresada es incorrecta ");
 			
 				}else 

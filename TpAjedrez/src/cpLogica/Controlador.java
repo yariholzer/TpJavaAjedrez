@@ -12,7 +12,7 @@ public class Controlador {
 
 	HashMap<String,Piezas> tablero =new HashMap<String,Piezas>();
 	
-	@Override
+	
 	public int hashCode(String s){
 		return (getFila(s)*getColumna(s));
 	

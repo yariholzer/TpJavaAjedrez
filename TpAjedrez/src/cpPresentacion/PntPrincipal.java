@@ -20,7 +20,7 @@ public class PntPrincipal {
 	private JFrame pntPrincipal;
 	private JTextField txtDniBlancas;
 	private JTextField txtDniNegras;
-	public Controlador ctrl = new Controlador();
+	public static Controlador ctrl = new Controlador();
 
 	/**
 	 * Launch the application.
@@ -119,7 +119,7 @@ public class PntPrincipal {
 		//ctrl.nuevaPartida(dniBlancas,dniNegras);
 		
 		try {
-			pntAjedrez frame = new pntAjedrez();
+			pntAjedrez frame = new pntAjedrez(ctrl);
 			frame.setVisible(true);
 			pntPrincipal.setVisible(false);
 		} catch (Exception e) {
