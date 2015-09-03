@@ -27,6 +27,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JTable;
 
 import org.omg.CORBA.CTX_RESTRICT_SCOPE;
+import javax.swing.JScrollPane;
 
 public class pntAjedrez extends JFrame {
 
@@ -93,8 +94,8 @@ public class pntAjedrez extends JFrame {
 		txtDestino.setColumns(10);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblTurno)
 					.addGap(18)
@@ -131,6 +132,7 @@ public class pntAjedrez extends JFrame {
 					.addContainerGap(156, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+		
 	}
 	
 	// falta relacionar con el ctrl en la pantalla principal para llamar al metodo moverPiezas

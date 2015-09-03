@@ -128,7 +128,8 @@ public class PntPrincipal {
 		
 		ctrl.inicializar("BLANCO");
 		ctrl.inicializar("NEGRO");
-		ctrl.moverPiezas("d4", "b2");
+		//ctrl.moverPiezas("d4", "b2");
+		ctrl.retornarTablero();
 
 		
 	}
