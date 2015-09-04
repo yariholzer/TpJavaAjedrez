@@ -34,6 +34,7 @@ public class PntPrincipal {
 	private JTextField txtNombreNegras;
 	private JTextField txtApellidoNegras;
 
+
 	/**
 	 * Launch the application.
 	 */
