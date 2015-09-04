@@ -14,6 +14,9 @@ import cpLogica.Controlador;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class PntPrincipal {
 
@@ -21,6 +24,15 @@ public class PntPrincipal {
 	private JTextField txtDniBlancas;
 	private JTextField txtDniNegras;
 	public static Controlador ctrl = new Controlador();
+	private JTextField txtNombreBlancas;
+	private JTextField txtApellidoBlancas;
+	private JLabel lblJugadorNegras;
+	private JLabel lblNombre;
+	private JLabel lblApellido;
+	private JLabel label;
+	private JLabel label_1;
+	private JTextField txtNombreNegras;
+	private JTextField txtApellidoNegras;
 
 	/**
 	 * Launch the application.
@@ -51,18 +63,19 @@ public class PntPrincipal {
 	private void initialize() {
 		pntPrincipal = new JFrame();
 		pntPrincipal.setTitle("Ingresar jugadores...");
-		pntPrincipal.setBounds(100, 100, 392, 193);
+		pntPrincipal.setBounds(100, 100, 344, 334);
 		pntPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		txtDniBlancas = new JTextField();
 		txtDniBlancas.setColumns(10);
 		
-		JLabel lblDniBlancas = new JLabel("DNI Jugador Blancas");
+		JLabel lblDniBlancas = new JLabel("DNI");
+		lblDniBlancas.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		txtDniNegras = new JTextField();
 		txtDniNegras.setColumns(10);
 		
-		JLabel lblDniNegras = new JLabel("DNI Jugador Negras");
+		JLabel lblDniNegras = new JLabel("DNI");
 		
 		JButton btnJugar = new JButton("JUGAR!!!");
 		btnJugar.addMouseListener(new MouseAdapter() {
@@ -72,39 +85,106 @@ public class PntPrincipal {
 				pntPrincipal.setVisible(false);
 			}
 		});
+		
+		txtNombreBlancas = new JTextField();
+		txtNombreBlancas.setColumns(10);
+		
+		txtApellidoBlancas = new JTextField();
+		txtApellidoBlancas.setColumns(10);
+		
+		JLabel lblJugadorBlancas = new JLabel("Jugador Blancas");
+		lblJugadorBlancas.setBackground(new Color(128, 128, 128));
+		lblJugadorBlancas.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblJugadorNegras = new JLabel("Jugador Negras");
+		lblJugadorNegras.setHorizontalAlignment(SwingConstants.CENTER);
+		lblJugadorNegras.setBackground(Color.GRAY);
+		
+		lblNombre = new JLabel("Nombre:");
+		
+		lblApellido = new JLabel("Apellido");
+		
+		label = new JLabel("Nombre:");
+		
+		label_1 = new JLabel("Apellido");
+		
+		txtNombreNegras = new JTextField();
+		txtNombreNegras.setColumns(10);
+		
+		txtApellidoNegras = new JTextField();
+		txtApellidoNegras.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(pntPrincipal.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(34)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblDniNegras)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(34)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblApellido)
+										.addComponent(lblDniBlancas))
+									.addGap(2))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(label, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblDniBlancas)
-								.addComponent(lblDniNegras))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(txtDniNegras, Alignment.LEADING)
-								.addComponent(txtDniBlancas, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(141)
-							.addComponent(btnJugar, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(45, Short.MAX_VALUE))
+								.addComponent(txtApellidoBlancas, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+								.addComponent(txtDniNegras, 182, 182, Short.MAX_VALUE)
+								.addComponent(txtNombreBlancas, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+								.addComponent(txtDniBlancas, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+								.addComponent(lblJugadorBlancas, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+								.addComponent(lblJugadorNegras, GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtNombreNegras, GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
+								.addComponent(txtApellidoNegras, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
+					.addGap(228))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(113)
+					.addComponent(btnJugar, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(79, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(35)
+					.addGap(15)
+					.addComponent(lblJugadorBlancas)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtDniBlancas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblDniBlancas))
+						.addComponent(lblDniBlancas)
+						.addComponent(txtDniBlancas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNombre)
+						.addComponent(txtNombreBlancas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblApellido)
+						.addComponent(txtApellidoBlancas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(28)
+					.addComponent(lblJugadorNegras)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtDniNegras, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblDniNegras))
+						.addComponent(lblDniNegras)
+						.addComponent(txtDniNegras, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtNombreNegras, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtApellidoNegras, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label_1))
 					.addGap(18)
-					.addComponent(btnJugar, GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-					.addContainerGap())
+					.addComponent(btnJugar)
+					.addContainerGap(33, Short.MAX_VALUE))
 		);
 		pntPrincipal.getContentPane().setLayout(groupLayout);
 	}
@@ -113,10 +193,20 @@ public class PntPrincipal {
 		
 		// cargar jugadores
 		
-		//int dniBlancas = Integer.parseInt(txtDniBlancas.getText()); 
-		//int dniNegras  = Integer.parseInt(txtDniNegras.getText());
+		long dniBlancas      = Long.parseLong(txtDniBlancas.getText()); 
+		String nombreBlancas = txtNombreBlancas.getText();
+		String apellBlancas  = txtApellidoBlancas.getText();
 		
-		//ctrl.nuevaPartida(dniBlancas,dniNegras);
+		long dniNegras      = Long.parseLong(txtDniNegras.getText());
+		String nombreNegras = txtNombreNegras.getText();
+		String apellNegras  = txtApellidoNegras.getText();
+		
+		ctrl.nuevaPartida(dniBlancas,
+						  nombreBlancas,
+						  apellBlancas,
+						  dniNegras,
+						  nombreNegras,
+						  apellNegras);
 		
 		try {
 			pntAjedrez frame = new pntAjedrez(ctrl);
@@ -125,6 +215,8 @@ public class PntPrincipal {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		// inicializar tablero
 		
 		ctrl.inicializar("BLANCO");
 		ctrl.inicializar("NEGRO");

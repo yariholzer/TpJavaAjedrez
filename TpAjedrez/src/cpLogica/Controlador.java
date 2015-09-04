@@ -38,13 +38,17 @@ public class Controlador {
 		System.out.println(tablero.get("e1").getNombre());
 		};
 
-	public void nuevaPartida(int dniBlancas, int dniNegras) {
+	public void nuevaPartida(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras) {
 			
 			Jugador jugadorBlancas = new Jugador();
-			Jugador jugadorNegras  = new Jugador();
-			
 			jugadorBlancas.setDni(dniBlancas);
+			jugadorBlancas.setApellido(apellBlancas);
+			jugadorBlancas.setNombre(nombreBlancas);
+			
+			Jugador jugadorNegras  = new Jugador();
 			jugadorNegras.setDni(dniNegras);
+			jugadorNegras.setApellido(apellNegras);
+			jugadorNegras.setNombre(nombreNegras);
 		}	
 		
 	public void inicializar(String color){
