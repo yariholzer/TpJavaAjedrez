@@ -20,7 +20,7 @@ public class PntPrincipal {
 	private JFrame pntPrincipal;
 	private JTextField txtDniBlancas;
 	private JTextField txtDniNegras;
-	public static Controlador ctrl = new Controlador();
+	public Controlador ctrl = new Controlador();
 
 	/**
 	 * Launch the application.

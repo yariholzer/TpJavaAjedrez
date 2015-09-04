@@ -37,27 +37,6 @@ public class pntAjedrez extends JFrame {
 	private JTextField txtDestino;
 	
 	Controlador ctrl;
-
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					pntAjedrez frame = new pntAjedrez();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
-	/**
-	 * Create the frame.
-	 * @param ctrl 
-	 */
 	public pntAjedrez(Controlador c) {
 		ctrl =c;
 		addWindowListener(new WindowAdapter() {
@@ -139,7 +118,6 @@ public class pntAjedrez extends JFrame {
 		
 	}
 	
-	// falta relacionar con el ctrl en la pantalla principal para llamar al metodo moverPiezas
 	protected void realizarJugada(String origen, String destino) {
 		
 		String columnas;

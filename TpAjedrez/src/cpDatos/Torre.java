@@ -18,7 +18,15 @@ public class Torre extends Piezas{
 	@Override
 	public boolean validarMovimiento(String origen, String destino) {
 		// TODO Auto-generated method stub
-		return true;
+		String filaInicial = origen.substring(0,1);
+		String filaFinal = destino.substring(0,1);
+		int columInicial = Integer.parseInt(origen.substring(1, 2));
+		int columFinal = Integer.parseInt(destino.substring(1,2));
+		if (filaFinal.equals(filaInicial) || columFinal==columInicial){
+			return true;
+		}else
+			return false;
+		
 	}
 	
 
