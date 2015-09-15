@@ -14,7 +14,6 @@ import cpLogica.Controlador;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 
@@ -194,7 +193,8 @@ public class PntPrincipal {
 		
 		// cargar jugadores
 		
-		long dniBlancas      = Long.parseLong(txtDniBlancas.getText()); 
+		
+		/*long dniBlancas      = Long.parseLong(txtDniBlancas.getText()); 
 		String nombreBlancas = txtNombreBlancas.getText();
 		String apellBlancas  = txtApellidoBlancas.getText();
 		
@@ -208,9 +208,11 @@ public class PntPrincipal {
 						  dniNegras,
 						  nombreNegras,
 						  apellNegras);
-		
+		*/
 		try {
-			pntAjedrez frame = new pntAjedrez(ctrl);
+			ctrl.inicializar("BLANCO");
+			ctrl.inicializar("NEGRO");
+			pntAjedrez frame = new pntAjedrez(ctrl );
 			frame.setVisible(true);
 			pntPrincipal.setVisible(false);
 		} catch (Exception e) {
@@ -219,10 +221,9 @@ public class PntPrincipal {
 		
 		// inicializar tablero
 		
-		ctrl.inicializar("BLANCO");
-		ctrl.inicializar("NEGRO");
+		
 		//ctrl.moverPiezas("d4", "b2");
-		ctrl.retornarTablero();
+
 
 		
 	}

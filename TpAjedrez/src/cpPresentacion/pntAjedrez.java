@@ -1,8 +1,7 @@
 package cpPresentacion;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -13,30 +12,28 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
-
 import cpLogica.Controlador;
-
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.JTable;
-
-import org.omg.CORBA.CTX_RESTRICT_SCOPE;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class pntAjedrez extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3096520898632450419L;
 	private JPanel contentPane;
 	private JTextField txtTurno;
 	private JTextField txtOrigen;
 	private JTextField txtDestino;
 	
 	Controlador ctrl;
+	private JTable table;
 	
 	/**
 	 * Create the frame.
@@ -69,6 +66,7 @@ public class pntAjedrez extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				realizarJugada((txtOrigen.getText()),(txtDestino.getText()));
+				mostrarTablero();
 			}
 		});
 		
@@ -81,15 +79,20 @@ public class pntAjedrez extends JFrame {
 		txtDestino = new JTextField();
 		txtDestino.setText("");
 		txtDestino.setColumns(10);
+		
+		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblTurno)
-					.addGap(18)
-					.addComponent(txtTurno, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(83)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblTurno)
+							.addGap(18)
+							.addComponent(txtTurno, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE))
+					.addGap(37)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblDestino, Alignment.LEADING)
 						.addComponent(lblOrigen, Alignment.LEADING))
@@ -112,16 +115,41 @@ public class pntAjedrez extends JFrame {
 						.addComponent(txtTurno, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblOrigen))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDestino)
-						.addComponent(txtDestino, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnMover)
-					.addContainerGap(156, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblDestino)
+								.addComponent(txtDestino, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnMover)
+							.addContainerGap())
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+							.addGap(22))))
 		);
-		contentPane.setLayout(gl_contentPane);
 		
+		table = new JTable(8,9);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"a", "b", "c", "d", "e", "f", "g", "h", ""
+			}
+		));
+		table.setBorder(null);
+		scrollPane.setViewportView(table);
+		contentPane.setLayout(gl_contentPane);
+		mostrarTablero();
 	}
 	
 	protected void realizarJugada(String origen, String destino) {
@@ -162,11 +190,31 @@ public class pntAjedrez extends JFrame {
 	}
 
 	protected void guardarPartida() {
-		
+
 		int opcion;
 		opcion = JOptionPane.YES_NO_CANCEL_OPTION;
 		JOptionPane.showConfirmDialog(null,"¿Desea guardar la partida antes de salir?","Guardar",opcion);
 		if (opcion == JOptionPane.YES_OPTION){};
 		
 	}
+	
+	protected void mostrarTablero(){
+		setearcolores();
+		String valor,posicion;
+		
+		for (int i = 1; i<=8; i++) {
+			table.setValueAt( i,(i-1) , 8);
+			for (char j = 'a'; j <= 'h'; j++) {
+				posicion= j + Integer.toString(i);
+				//System.out.println(+i-1+ "***"+(j-97)+"**");
+				valor =ctrl.retornarTablero(posicion);
+				table.setValueAt(valor,(i-1),(j-97) );	
+			}
+		} 
+	}
+	private void setearcolores() {
+		table.setBackground(Color.GRAY);
+		
+		
+	};
 }

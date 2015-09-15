@@ -31,12 +31,21 @@ public class Controlador {
 		
 	}
 	
-	public void retornarTablero(){
-		System.out.println(tablero.get("d8").getNombre());
-		System.out.println(tablero.get("e8").getNombre());
-		System.out.println(tablero.get("d1").getNombre());
-		System.out.println(tablero.get("e1").getNombre());
-		};
+	public String retornarTablero(String posicion){
+		
+		try {
+			String ficha;
+			
+			ficha =tablero.get(posicion).getNombre();
+	
+			
+			return ficha;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return " ";
+		}
+		
+	};
 
 	public void nuevaPartida(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras) {
 			
@@ -148,6 +157,12 @@ public class Controlador {
 								
 			}
 
-
+	public String devolverColor(String posicion){
+		String color;
+		color=tablero.get(posicion).getColor();
+		return color;
+		
+		
+	};
 }
 
