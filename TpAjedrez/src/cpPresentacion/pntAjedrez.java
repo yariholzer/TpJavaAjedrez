@@ -20,6 +20,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.border.LineBorder;
 
 public class pntAjedrez extends JFrame {
 
@@ -65,8 +66,10 @@ public class pntAjedrez extends JFrame {
 		btnMover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				realizarJugada((txtOrigen.getText()),(txtDestino.getText()));
-				mostrarTablero();
+					realizarJugada((txtOrigen.getText()),(txtDestino.getText()));
+					mostrarTablero();
+				
+				
 			}
 		});
 		
@@ -131,6 +134,7 @@ public class pntAjedrez extends JFrame {
 		);
 		
 		table = new JTable(8,9);
+		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null, null, null},
@@ -146,48 +150,65 @@ public class pntAjedrez extends JFrame {
 				"a", "b", "c", "d", "e", "f", "g", "h", ""
 			}
 		));
+		table.getColumnModel().getColumn(8).setCellRenderer(table.getTableHeader().getDefaultRenderer());
 		table.setBorder(null);
 		scrollPane.setViewportView(table);
 		contentPane.setLayout(gl_contentPane);
+		table.setRowSelectionAllowed(false);
+		table.setEnabled(false);
+		
+		
+		
+		
+		
 		mostrarTablero();
+		
+		
+		
+		int turno=0;
+		String jug1="yari",jug2="gino";
+		txtTurno.setText(ctrl.devolverTurno(turno,jug1 , jug2));
 	}
 	
 	protected void realizarJugada(String origen, String destino) {
+		try {
+			String columnas;
+			int filas;
+			boolean bandera=false;
+			columnas = origen.substring(0,1);
+			filas =Integer.parseInt(origen.substring(1,2));
 		
-		String columnas;
-		int filas;
-		boolean bandera=false;
-		columnas = origen.substring(0,1);
-		filas =Integer.parseInt(origen.substring(1,2));
-		
-		if(columnas.matches("[a-h]"))
-			{
-				if (1<= filas && filas <= 8)
-					{bandera = true;}
-				else JOptionPane.showMessageDialog(null, "la fila de origen ingresada es incorrecta ");
-		
-			}else 
-				JOptionPane.showMessageDialog(null, "la columna de origen ingresada es incorrecta ");
-		
-		if (bandera==true)
-			{
-			columnas = destino.substring(0,1);
-			filas =Integer.parseInt(destino.substring(1,2));
-			
 			if(columnas.matches("[a-h]"))
 				{
 					if (1<= filas && filas <= 8)
-						{ctrl.moverPiezas(origen, destino);}
+					{bandera = true;}
+					else JOptionPane.showMessageDialog(null, "la fila de origen ingresada es incorrecta ");
+		
+				}else 
+					JOptionPane.showMessageDialog(null, "la columna de origen ingresada es incorrecta ");
+		
+			if (bandera==true)
+				{
+				columnas = destino.substring(0,1);
+				filas =Integer.parseInt(destino.substring(1,2));
+			
+			if(columnas.matches("[a-h]"))
+				{
+				if (1<= filas && filas <= 8)
+					{ctrl.moverPiezas(origen, destino);}
+					
 					else JOptionPane.showMessageDialog(null, "la fila de destino ingresada es incorrecta ");
 			
 				}else 
-					JOptionPane.showMessageDialog(null, "la columna de destino ingresada es incorrecta ");
+					JOptionPane.showMessageDialog(null, "la columna de destino ingresada es incorrecta ");}
 			
-			
-			
-			
-		}
-	}
+					}
+		 catch (Exception e) {
+			// TODO: handle exception
+		 	}	
+					
+}
+
 
 	protected void guardarPartida() {
 
@@ -206,15 +227,17 @@ public class pntAjedrez extends JFrame {
 			table.setValueAt( i,(i-1) , 8);
 			for (char j = 'a'; j <= 'h'; j++) {
 				posicion= j + Integer.toString(i);
-				//System.out.println(+i-1+ "***"+(j-97)+"**");
 				valor =ctrl.retornarTablero(posicion);
 				table.setValueAt(valor,(i-1),(j-97) );	
 			}
 		} 
 	}
+	
 	private void setearcolores() {
-		table.setBackground(Color.GRAY);
-		
-		
-	};
+		table.setBackground(new Color(184, 134, 11));
+	}
+
+
 }
+
+

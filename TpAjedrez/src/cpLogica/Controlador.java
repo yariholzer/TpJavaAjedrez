@@ -1,12 +1,10 @@
 package cpLogica;
 
 import cpDatos.*;
-
 import java.util.HashMap;
-
 import javax.swing.JOptionPane;
-
 import cpDatos.Piezas;
+
 
 public class Controlador {
 
@@ -164,5 +162,18 @@ public class Controlador {
 		
 		
 	};
-}
+	
+	public String devolverTurno(int turno, String jug1, String jug2){
+		if(turno%2==0){
+			turno= turno +1;
+			return jug1;}
+			else {
+				turno= turno +1;
+				return jug2;}
+		
+		}
+		
+		
+	}
+
 

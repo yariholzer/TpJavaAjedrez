@@ -190,7 +190,7 @@ public class PntPrincipal {
 	}
 
 	protected void btnJugarClicked() {
-		
+
 		// cargar jugadores
 		
 		
@@ -210,6 +210,7 @@ public class PntPrincipal {
 						  apellNegras);
 		*/
 		try {
+			
 			ctrl.inicializar("BLANCO");
 			ctrl.inicializar("NEGRO");
 			pntAjedrez frame = new pntAjedrez(ctrl );
@@ -218,13 +219,6 @@ public class PntPrincipal {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		// inicializar tablero
-		
-		
-		//ctrl.moverPiezas("d4", "b2");
-
-
 		
 	}
 }
