@@ -162,17 +162,9 @@ public class pntAjedrez extends JFrame {
 		table.setRowSelectionAllowed(false);
 		table.setEnabled(false);
 		
-		
-		
-		
-		
 		mostrarTablero();
 		
-		
-		
-		int turno=0;
-		String jug1="yari",jug2="gino";
-		txtTurno.setText(ctrl.devolverTurno(turno, jug1 , jug2));
+		txtTurno.setText(ctrl.devolverTurno().getNombre());
 	}
 	
 	protected void realizarJugada(String origen, String destino) {
@@ -200,7 +192,8 @@ public class pntAjedrez extends JFrame {
 			if(columnas.matches("[a-h]"))
 				{
 				if (1<= filas && filas <= 8)
-					{ctrl.moverPiezas(origen, destino);}
+					{ctrl.moverPiezas(origen, destino);
+					txtTurno.setText(ctrl.devolverTurno().getNombre());}
 					
 					else JOptionPane.showMessageDialog(null, "la fila de destino ingresada es incorrecta ");
 			

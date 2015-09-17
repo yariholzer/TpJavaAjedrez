@@ -9,9 +9,9 @@ import cpDatos.Piezas;
 public class Controlador {
 
 	HashMap<String,Piezas> tablero =new HashMap<String,Piezas>();
-	Jugador jugadorBlancas = new Jugador();
-	Jugador jugadorNegras  = new Jugador();
-	
+	public Jugador jugadorBlancas = new Jugador();
+	public Jugador jugadorNegras  = new Jugador();
+	public int turnoActual=0;
 	public int hashCode(String s){
 		return (getFila(s)*getColumna(s));
 	
@@ -145,7 +145,7 @@ public class Controlador {
 						tablero.put(destino, tablero.get(origen));
 						tablero.put(origen, null);
 						JOptionPane.showMessageDialog(null, "la ficha fue movida");
-						
+						turnoActual++;
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "la ficha elegida no se puede mover de esa manera");
@@ -164,13 +164,13 @@ public class Controlador {
 		
 	};
 	
-	public String devolverTurno(int turno, String jug1, String jug2){
-		if(turno%2==0){
-			turno= turno +1;
-			return jug1;}
-			else {
-				turno= turno +1;
-				return jug2;}
+	public Jugador devolverTurno(){
+		if(turnoActual%2==0){
+			
+			return jugadorBlancas;}
+		else{
+				
+				return jugadorNegras;}
 		
 		}
 		
