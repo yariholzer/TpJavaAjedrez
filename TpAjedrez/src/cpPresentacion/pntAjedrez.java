@@ -2,6 +2,7 @@ package cpPresentacion;
 
 
 import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -12,11 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
+
+import cpDatos.Jugador;
 import cpLogica.Controlador;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -167,7 +172,7 @@ public class pntAjedrez extends JFrame {
 		
 		int turno=0;
 		String jug1="yari",jug2="gino";
-		txtTurno.setText(ctrl.devolverTurno(turno,jug1 , jug2));
+		txtTurno.setText(ctrl.devolverTurno(turno, jug1 , jug2));
 	}
 	
 	protected void realizarJugada(String origen, String destino) {

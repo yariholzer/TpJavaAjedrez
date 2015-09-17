@@ -194,7 +194,7 @@ public class PntPrincipal {
 		// cargar jugadores
 		
 		
-		/*long dniBlancas      = Long.parseLong(txtDniBlancas.getText()); 
+		long dniBlancas      = Long.parseLong(txtDniBlancas.getText()); 
 		String nombreBlancas = txtNombreBlancas.getText();
 		String apellBlancas  = txtApellidoBlancas.getText();
 		
@@ -208,12 +208,12 @@ public class PntPrincipal {
 						  dniNegras,
 						  nombreNegras,
 						  apellNegras);
-		*/
+		
 		try {
 			
 			ctrl.inicializar("BLANCO");
 			ctrl.inicializar("NEGRO");
-			pntAjedrez frame = new pntAjedrez(ctrl );
+			pntAjedrez frame = new pntAjedrez(ctrl);
 			frame.setVisible(true);
 			pntPrincipal.setVisible(false);
 		} catch (Exception e) {

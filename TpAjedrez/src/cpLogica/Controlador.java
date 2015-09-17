@@ -9,7 +9,8 @@ import cpDatos.Piezas;
 public class Controlador {
 
 	HashMap<String,Piezas> tablero =new HashMap<String,Piezas>();
-	
+	Jugador jugadorBlancas = new Jugador();
+	Jugador jugadorNegras  = new Jugador();
 	
 	public int hashCode(String s){
 		return (getFila(s)*getColumna(s));
@@ -46,16 +47,16 @@ public class Controlador {
 	};
 
 	public void nuevaPartida(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras) {
-			
-			Jugador jugadorBlancas = new Jugador();
+
 			jugadorBlancas.setDni(dniBlancas);
 			jugadorBlancas.setApellido(apellBlancas);
 			jugadorBlancas.setNombre(nombreBlancas);
-			
-			Jugador jugadorNegras  = new Jugador();
+
 			jugadorNegras.setDni(dniNegras);
 			jugadorNegras.setApellido(apellNegras);
 			jugadorNegras.setNombre(nombreNegras);
+			
+			
 		}	
 		
 	public void inicializar(String color){
