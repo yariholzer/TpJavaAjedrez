@@ -9,6 +9,8 @@ import cpPresentacion.pntAjedrez;
 
 public class CtrlAjedrez {
 	
+	// NUEVO CONTROLADOR
+	
 	Partida p      = new Partida();
 	DataPartida dp = new DataPartida();
 	
