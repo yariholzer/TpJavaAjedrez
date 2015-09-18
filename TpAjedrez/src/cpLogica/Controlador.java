@@ -1,10 +1,16 @@
 package cpLogica;
 
+import java.sql.*;
 import cpDatos.*;
-import java.util.HashMap;
-import javax.swing.JOptionPane;
-import cpDatos.Piezas;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+
+import javax.swing.JOptionPane;
+
+import cpDatos.Piezas;
 
 public class Controlador {
 
@@ -35,8 +41,7 @@ public class Controlador {
 		try {
 			String ficha;
 			
-			ficha =tablero.get(posicion).getNombre();
-	
+			ficha = tablero.get(posicion).getNombre();
 			
 			return ficha;
 		} catch (Exception e) {
@@ -46,15 +51,15 @@ public class Controlador {
 		
 	};
 
-	public void nuevaPartida(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras) {
+ 	public void nuevaPartida(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras) {			
+ 		
+		jugadorBlancas.setDni(dniBlancas);
+		jugadorBlancas.setApellido(apellBlancas);
+		jugadorBlancas.setNombre(nombreBlancas);
 
-			jugadorBlancas.setDni(dniBlancas);
-			jugadorBlancas.setApellido(apellBlancas);
-			jugadorBlancas.setNombre(nombreBlancas);
-
-			jugadorNegras.setDni(dniNegras);
-			jugadorNegras.setApellido(apellNegras);
-			jugadorNegras.setNombre(nombreNegras);
+		jugadorNegras.setDni(dniNegras);
+		jugadorNegras.setApellido(apellNegras);
+		jugadorNegras.setNombre(nombreNegras);
 			
 			
 		}	
