@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
-import cpLogica.Controlador;
+import cpLogica.*;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,10 +19,11 @@ import java.awt.Color;
 
 public class PntPrincipal {
 
+	public static CtrlAjedrez ctrl = new CtrlAjedrez();
+	
 	private JFrame pntPrincipal;
 	private JTextField txtDniBlancas;
 	private JTextField txtDniNegras;
-	public static Controlador ctrl = new Controlador();
 	private JTextField txtNombreBlancas;
 	private JTextField txtApellidoBlancas;
 	private JLabel lblJugadorNegras;
@@ -210,9 +211,6 @@ public class PntPrincipal {
 						  apellNegras);
 		
 		try {
-			
-			ctrl.inicializar("BLANCO");
-			ctrl.inicializar("NEGRO");
 			pntAjedrez frame = new pntAjedrez(ctrl);
 			frame.setVisible(true);
 			pntPrincipal.setVisible(false);

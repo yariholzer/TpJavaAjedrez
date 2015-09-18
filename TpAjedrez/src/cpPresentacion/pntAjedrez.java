@@ -14,8 +14,7 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 
-import cpDatos.Jugador;
-import cpLogica.Controlador;
+import cpLogica.*;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,16 +28,14 @@ import javax.swing.border.LineBorder;
 
 public class pntAjedrez extends JFrame {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 3096520898632450419L;
 	private JPanel contentPane;
 	private JTextField txtTurno;
 	private JTextField txtOrigen;
 	private JTextField txtDestino;
 	
-	Controlador ctrl;
+	CtrlAjedrez ctrl;
 	private JTable table;
 	
 	/**
@@ -46,7 +43,7 @@ public class pntAjedrez extends JFrame {
 	 * @param ctrl 
 	 */
 
-	public pntAjedrez(Controlador c) {
+	public pntAjedrez(CtrlAjedrez c) {
 		ctrl =c;
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -225,7 +222,7 @@ public class pntAjedrez extends JFrame {
 			table.setValueAt( i,(i-1) , 8);
 			for (char j = 'a'; j <= 'h'; j++) {
 				posicion= j + Integer.toString(i);
-				valor =ctrl.retornarTablero(posicion);
+				valor =ctrl.recuperarFicha(posicion);
 				table.setValueAt(valor,(i-1),(j-97) );	
 			}
 		} 
