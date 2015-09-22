@@ -3,6 +3,7 @@ package cpDatos;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
+import javax.swing.text.StyledEditorKit.BoldAction;
 
 public class Partida {
 	
@@ -46,6 +47,7 @@ public class Partida {
 	};
 	
 	public void inicializar(String color){
+
 		
 		//establecer posiciones segun color
 		int nombrePeon=1,nombreTorre=1, nombreAlfil=1, nombreCaballo=1;
@@ -123,34 +125,51 @@ public class Partida {
 		
 	}
 	
-	public void moverPiezas(String origen, String destino){
-		if (tablero.containsKey(origen))
-			{
+	public void moverPiezas(String origen, String destino){//1
+		if(jugadorCorrecto(origen, devolverTurno()))
+		{	
+		String colorDestino;
+		if (tablero.containsKey(origen)){
+			if(tablero.containsKey(destino))
+				{colorDestino=tablero.get(destino).getColor();}
+			else
+				{colorDestino=null;}
+			if (tablero.get(origen).getColor().equals(colorDestino))
+			{//6
+				JOptionPane.showMessageDialog(null, "En la posiocion de destino hay una ficha del mismo color");
+			}//6
+			else{//3
 				if (tablero.get(origen).validarMovimiento(origen, destino))
-					{
+					{//5
 						tablero.put(destino, tablero.get(origen));
 						tablero.put(origen, null);
 						JOptionPane.showMessageDialog(null, "la ficha fue movida");
 						turnoActual++;
-					}
-					else{
-						JOptionPane.showMessageDialog(null, "la ficha elegida no se puede mover de esa manera");
-						}
-					}else 
-					JOptionPane.showMessageDialog(null, "MOVIMIENTO NO VALIDO!! en la posicion de origen no hay ficha");
-				
-								
-			}
+					}//5
+				else{//4
+					JOptionPane.showMessageDialog(null, "la ficha elegida no se puede mover de esa manera");
+					}//4
+				}//3
+			
+			}//7	
+		else{//2 
+			JOptionPane.showMessageDialog(null, "MOVIMIENTO NO VALIDO!! en la posicion de origen no hay ficha");
+			}//2;
+		}else
+			JOptionPane.showMessageDialog(null, "La ficha no corresponde al jugador actual ");
+}//1
 
 	public void cargarJugadores(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras) {			
  		
 		jugadorBlancas.setDni(dniBlancas);
 		jugadorBlancas.setApellido(apellBlancas);
 		jugadorBlancas.setNombre(nombreBlancas);
+		jugadorBlancas.setColorFichas("BLANCO");
 
 		jugadorNegras.setDni(dniNegras);
 		jugadorNegras.setApellido(apellNegras);
 		jugadorNegras.setNombre(nombreNegras);
+		jugadorNegras.setColorFichas("NEGRO");
 			
 			
 		}	
@@ -161,7 +180,7 @@ public class Partida {
 			return jugadorBlancas;}
 		else{
 				
-				return jugadorNegras;}
+			return jugadorNegras;}
 		
 		}
 
@@ -171,4 +190,11 @@ public class Partida {
 		return color;
 	};
 
+	public boolean jugadorCorrecto(String posicion, Jugador jugadorAct ){
+		if(tablero.get(posicion).getColor().equals(jugadorAct.colorFichas))
+			return true;
+		else 
+			return false;
+	}
+	
 }

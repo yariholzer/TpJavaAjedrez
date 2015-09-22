@@ -16,9 +16,9 @@ public class CtrlAjedrez {
 	
 	public void nuevaPartida(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras){
 		
-		int idPartida;
+		int idPartida=0;
 		
-		idPartida = dp.recuperarPartida(dniBlancas, dniNegras);
+		//idPartida = dp.recuperarPartida(dniBlancas, dniNegras);
 		
 		if (idPartida==0){
 			p.inicializar("BLANCO");

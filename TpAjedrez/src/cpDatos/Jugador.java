@@ -4,7 +4,16 @@ public class Jugador {
 	private long dni;
 	String nombre;
 	String apellido;
+	String colorFichas;
 	
+	public String getColorFichas() {
+		return colorFichas;
+	}
+
+	public void setColorFichas(String colorFichas) {
+		this.colorFichas = colorFichas;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
