@@ -201,13 +201,61 @@ public class Partida {
 
 	public void setPosiciones(ResultSet rsPosiciones) {
 		
-		String	nombrePieza, colorPieza, posicion;
+		String	tipoPieza, colorPieza, posicion;
+		int nombrePieza;
 		
 		try {
 			while (rsPosiciones!=null && rsPosiciones.next()) {
-				nombrePieza = rsPosiciones.getString("nombrePieza");
+				tipoPieza   = rsPosiciones.getString("tipoPieza");
+				nombrePieza = rsPosiciones.getInt("nombrePieza");
 				colorPieza  = rsPosiciones.getString("colorPieza");
 				posicion 	= rsPosiciones.getString("posicion");
+				
+				switch (tipoPieza) {
+				case "peon":
+					Peon peon= new Peon();
+					peon.setColor(colorPieza);
+					peon.setNombre(nombrePieza);
+					tablero.put(posicion,peon);
+					break;
+
+				case "torre":
+					Torre torre= new Torre();
+					torre.setColor(colorPieza);
+					torre.setNombre(nombrePieza);
+					tablero.put(posicion,torre);
+					nombrePieza++;
+					break;
+					
+				case "caballo":
+					Caballo caballo= new Caballo();
+					caballo.setColor(colorPieza);
+					caballo.setNombre(nombrePieza);
+					tablero.put(posicion,caballo);
+					break;
+					
+				case "aflil":
+					Alfil alfil= new Alfil();
+					alfil.setColor(colorPieza);
+					alfil.setNombre(nombrePieza);
+					tablero.put(posicion,alfil);
+					break;
+					
+				case "rey":
+					Rey rey= new Rey();
+					rey.setColor(colorPieza);
+					rey.setNombre(nombrePieza);
+					tablero.put(posicion,rey);
+					break;
+				
+				case "reina":
+					Reina reina= new Reina();
+					reina.setColor(colorPieza);
+					reina.setNombre(nombrePieza);
+					tablero.put(posicion,reina);
+					break;
+				}
+				
 				
 				
 			}
