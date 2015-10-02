@@ -25,7 +25,7 @@ public class CtrlAjedrez {
 			p.inicializar("NEGRO");
 			p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
 		}else{
-			//
+			p.setPosiciones(dp.getPosiciones(idPartida));
 		}
 		
 	}

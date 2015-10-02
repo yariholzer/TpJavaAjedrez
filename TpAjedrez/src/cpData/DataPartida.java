@@ -1,6 +1,7 @@
 package cpData;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DataPartida {
 
@@ -26,6 +27,32 @@ public class DataPartida {
 			e.printStackTrace();
 		}
 		return idPartida;
+	}
+
+public ResultSet getPosiciones(int idPartida) {
+		
+		ResultSet rs1   = null;
+		Statement stmt1 = null;
+		String 	  select, nombrePieza, colorPieza, posicion;
+		ArrayList<String> tableroDB = new ArrayList<String>();
+		int i = 0;
+		
+		try {
+			stmt1  = Conexion.getInstancia().getConn().createStatement();
+			select = "SELECT * FROM posiciones WHERE idPartida = " + Integer.toString(idPartida) + ";";
+			rs1    = stmt1.executeQuery(select);
+			if(rs1!=null && rs1.next()){
+				nombrePieza = rs1.getString("nombrePieza");
+			}			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return rs1;
+		
 	};
+	
+}
 	
 }

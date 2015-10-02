@@ -1,5 +1,7 @@
 package cpDatos;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
@@ -195,6 +197,25 @@ public class Partida {
 			return true;
 		else 
 			return false;
+	}
+
+	public void setPosiciones(ResultSet rsPosiciones) {
+		
+		String	nombrePieza, colorPieza, posicion;
+		
+		try {
+			while (rsPosiciones!=null && rsPosiciones.next()) {
+				nombrePieza = rsPosiciones.getString("nombrePieza");
+				colorPieza  = rsPosiciones.getString("colorPieza");
+				posicion 	= rsPosiciones.getString("posicion");
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }
