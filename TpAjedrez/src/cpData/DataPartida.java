@@ -3,6 +3,8 @@ package cpData;
 import java.sql.*;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class DataPartida {
 
 	public DataPartida(){
@@ -38,7 +40,8 @@ public ResultSet getPosiciones(int idPartida) {
 		try {
 			stmt1  = Conexion.getInstancia().getConn().createStatement();
 			select = "SELECT * FROM posiciones WHERE idPartida = " + Integer.toString(idPartida) + ";";
-			rs1    = stmt1.executeQuery(select);		
+			rs1    = stmt1.executeQuery(select);	
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();

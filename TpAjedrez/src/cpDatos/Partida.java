@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import javax.swing.DebugGraphics;
 import javax.swing.JOptionPane;
 import javax.swing.text.StyledEditorKit.BoldAction;
 
@@ -255,8 +256,6 @@ public class Partida {
 					tablero.put(posicion,reina);
 					break;
 				}
-				
-				
 				
 			}
 		} catch (SQLException e) {
