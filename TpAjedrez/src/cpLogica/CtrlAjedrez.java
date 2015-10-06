@@ -3,11 +3,8 @@ package cpLogica;
 import cpDatos.*;
 import cpData.*;
 
-import java.sql.*;
 
 import javax.swing.JOptionPane;
-
-import cpPresentacion.pntAjedrez;
 
 public class CtrlAjedrez {
 	
