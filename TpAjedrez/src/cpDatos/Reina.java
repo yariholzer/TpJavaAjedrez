@@ -18,12 +18,24 @@ public class Reina extends Piezas{
 	}
 	@Override
 	public boolean validarMovimiento(String origen, String destino) {
-		// TODO Auto-generated method stub
-		return true;
+
+		int columInicial = (int) origen.substring(0,1).charAt(0);
+		int columFinal   = (int) destino.substring(0,1).charAt(0);
+		int filaInicial  = Integer.parseInt(origen.substring(1, 2));
+		int filaFinal    = Integer.parseInt(destino.substring(1,2));
+	
+		if ( Math.abs(columFinal - columInicial) == Math.abs( filaFinal - filaInicial ) && columFinal != columInicial && filaInicial != filaFinal){
+			return true;
+		} else {
+			if (filaFinal == filaInicial || columFinal == columInicial){
+				return true;
+			}else {
+				return false;
+			}
+		}
 	}
 	@Override
 	public String getTipoPieza() {
-		// TODO Auto-generated method stub
 		return "reina";
 	}
 

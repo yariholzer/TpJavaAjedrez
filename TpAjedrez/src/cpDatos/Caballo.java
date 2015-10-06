@@ -21,13 +21,32 @@ public class Caballo extends Piezas{
 	}
 	@Override
 	public boolean validarMovimiento(String origen, String destino) {
-		// TODO Auto-generated method stub
-		return true;
+		int columInicial = (int) origen.substring(0,1).charAt(0);
+		int columFinal   = (int) destino.substring(0,1).charAt(0);
+		int filaInicial  = Integer.parseInt(origen.substring(1, 2));
+		int filaFinal    = Integer.parseInt(destino.substring(1,2));
+		
+		if (columFinal == columInicial + 2 || columFinal == columInicial - 2 ){
+			if (filaFinal == filaInicial + 1 || filaFinal == filaInicial - 1){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			if (filaFinal == filaInicial + 2 || filaFinal == filaInicial - 2){
+				if (columFinal == columInicial + 1 || columFinal == columInicial - 1){
+					return true;
+				}else {
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}
 	}
 
 	@Override
 	public String getTipoPieza() {
-		// TODO Auto-generated method stub
 		return "caballo";
 	}
 

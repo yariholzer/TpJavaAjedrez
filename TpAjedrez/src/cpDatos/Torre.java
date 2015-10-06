@@ -26,11 +26,12 @@ public class Torre extends Piezas{
 		String filaFinal = destino.substring(0,1);
 		int columInicial = Integer.parseInt(origen.substring(1, 2));
 		int columFinal = Integer.parseInt(destino.substring(1,2));
+		
 		if (filaFinal.equals(filaInicial) || columFinal==columInicial){
 			return true;
-		}else
+		}else {
 			return false;
-		
+		}
 	}
 
 	@Override
