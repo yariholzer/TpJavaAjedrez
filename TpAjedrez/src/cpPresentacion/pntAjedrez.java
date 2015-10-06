@@ -199,7 +199,7 @@ public class pntAjedrez extends JFrame {
 			
 					}
 		 catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		 	}	
 					
 }

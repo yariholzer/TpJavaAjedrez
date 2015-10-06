@@ -25,5 +25,11 @@ public class Caballo extends Piezas{
 		return true;
 	}
 
+	@Override
+	public String getTipoPieza() {
+		// TODO Auto-generated method stub
+		return "caballo";
+	}
+
 
 }

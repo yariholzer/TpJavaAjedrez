@@ -21,5 +21,10 @@ public class Reina extends Piezas{
 		// TODO Auto-generated method stub
 		return true;
 	}
+	@Override
+	public String getTipoPieza() {
+		// TODO Auto-generated method stub
+		return "reina";
+	}
 
 }

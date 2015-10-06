@@ -142,18 +142,31 @@ public class Partida {
 				JOptionPane.showMessageDialog(null, "En la posiocion de destino hay una ficha del mismo color");
 			}//6
 			else{//3
-				if (tablero.get(origen).validarMovimiento(origen, destino))
+				if (tablero.get(origen).getTipoPieza().equals("peon") && colorDestino != null ){					
+					if (((Peon) tablero.get(origen)).comer(origen, destino))
 					{//5
 						tablero.put(destino, tablero.get(origen));
-						tablero.put(origen, null);
+						tablero.remove(origen);
 						JOptionPane.showMessageDialog(null, "la ficha fue movida");
 						turnoActual++;
 					}//5
 				else{//4
 					JOptionPane.showMessageDialog(null, "la ficha elegida no se puede mover de esa manera");
 					}//4
-				}//3
-			
+					
+				}else{
+					if (tablero.get(origen).validarMovimiento(origen, destino))
+						{//5
+							tablero.put(destino, tablero.get(origen));
+							tablero.remove(origen);
+							JOptionPane.showMessageDialog(null, "la ficha fue movida");
+							turnoActual++;
+						}//5
+					else{//4
+						JOptionPane.showMessageDialog(null, "la ficha elegida no se puede mover de esa manera");
+						}//4
+					}//3
+				}
 			}//7	
 		else{//2 
 			JOptionPane.showMessageDialog(null, "MOVIMIENTO NO VALIDO!! en la posicion de origen no hay ficha");

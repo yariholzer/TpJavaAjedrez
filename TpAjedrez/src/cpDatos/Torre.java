@@ -32,6 +32,12 @@ public class Torre extends Piezas{
 			return false;
 		
 	}
+
+	@Override
+	public String getTipoPieza() {
+		// TODO Auto-generated method stub
+		return "torre";
+	}
 	
 
 }

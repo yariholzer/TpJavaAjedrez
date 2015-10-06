@@ -24,5 +24,11 @@ public class Alfil extends Piezas {
 	public boolean validarMovimiento(String origen, String destino) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public String getTipoPieza() {
+		// TODO Auto-generated method stub
+		return "alfil";
 	} 
 }

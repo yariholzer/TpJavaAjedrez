@@ -22,21 +22,26 @@ public class Rey extends Piezas {
 
 	@Override
 	public boolean validarMovimiento(String origen, String destino) {
-		String filaInicial = origen.substring(0,1);
-		String filaFinal = destino.substring(0,1);
-		int columInicial = Integer.parseInt(origen.substring(1, 2));
-		int columFinal = Integer.parseInt(destino.substring(1,2));
-		if ((columInicial-1) <=columFinal && columFinal <= (columInicial+1))
-			{
-			if ((Integer.parseInt(filaInicial)-1) <=Integer.parseInt(filaFinal) && Integer.parseInt(filaFinal) <= (Integer.parseInt(filaInicial)+1))
-					return true;
-			else return false;
+		int columInicial = (int) origen.substring(0,1).charAt(0);
+		int columFinal   = (int) destino.substring(0,1).charAt(0);
+		int filaInicial  = Integer.parseInt(origen.substring(1, 2));
+		int filaFinal    = Integer.parseInt(destino.substring(1,2));
+		
+		if ( columInicial == columFinal || columInicial == columFinal - 1 || columInicial == columFinal + 1 ){
+			if ( filaInicial == filaFinal || filaInicial == filaFinal - 1 || filaInicial == filaFinal + 1 ){
+				return true;
+			}else{
+				return false;
 			}
-		
-		else 
-		return false;
-		
-				
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public String getTipoPieza() {
+		// TODO Auto-generated method stub
+		return "rey";
 	}
 }
 	

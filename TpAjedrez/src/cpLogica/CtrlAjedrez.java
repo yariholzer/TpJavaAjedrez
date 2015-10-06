@@ -27,17 +27,16 @@ public class CtrlAjedrez {
 			p.inicializar("NEGRO");
 			p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
 		}else{
-			int opcion;
-			opcion = JOptionPane.YES_NO_CANCEL_OPTION;
-			JOptionPane.showConfirmDialog(null,"Existe una partida guardada para estos jugadores. ¿Desea continuarla?","",opcion);
+			int opcion = JOptionPane.YES_NO_CANCEL_OPTION;
+			JOptionPane.showConfirmDialog(null,"Existe una partida guardada para estos jugadores. ¿Desea continuarla?","Atención!",opcion);
 			if (opcion == JOptionPane.YES_OPTION){
 				p.setPosiciones(dp.getPosiciones(idPartida));
 				p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
-				}else{
-					p.inicializar("BLANCO");
-					p.inicializar("NEGRO");
-					p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
-				};
+			}else{
+				p.inicializar("BLANCO");
+				p.inicializar("NEGRO");
+				p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
+			};
 			
 		}
 		
