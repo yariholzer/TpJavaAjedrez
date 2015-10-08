@@ -1,8 +1,9 @@
 package cpLogica;
 
+import java.util.*;
+
 import cpDatos.*;
 import cpData.*;
-
 
 import javax.swing.JOptionPane;
 
@@ -51,4 +52,19 @@ public class CtrlAjedrez {
 		return p.recuperarFicha(posicion);
 	};
 
+	public String[] recDatosJugador(long dni) {
+		
+		return dp.recDatosJugador(dni);
+			
+	}
+	
+	public void setJugador(long dniJugador, String apellJugador, String nombreJugador){
+		dp.setJugador(dniJugador, apellJugador, nombreJugador);
+	}
+	
+	public void setPartida(){
+		dp.setPartida(p.jugadorBlancas.getDni(), p.jugadorNegras.getDni(), p.turnoActual);
+	}
+	
+	
 }

@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -14,8 +15,11 @@ import cpLogica.*;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.SwingConstants;
+
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class PntPrincipal {
 
@@ -33,6 +37,7 @@ public class PntPrincipal {
 	private JLabel label_1;
 	private JTextField txtNombreNegras;
 	private JTextField txtApellidoNegras;
+	private int bandera = 0;
 
 
 	/**
@@ -83,7 +88,6 @@ public class PntPrincipal {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				btnJugarClicked();
-				pntPrincipal.setVisible(false);
 			}
 		});
 		
@@ -114,6 +118,14 @@ public class PntPrincipal {
 		
 		txtApellidoNegras = new JTextField();
 		txtApellidoNegras.setColumns(10);
+		
+		///////////////////////////////////////////// bloquear controles /////////////////////////////////////////////
+		
+		txtApellidoBlancas.setEnabled(false);
+		txtNombreBlancas.setEnabled(false);
+		txtApellidoNegras.setEnabled(false);
+		txtNombreNegras.setEnabled(false);
+		
 		GroupLayout groupLayout = new GroupLayout(pntPrincipal.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -192,30 +204,76 @@ public class PntPrincipal {
 
 	protected void btnJugarClicked() {
 
-		// cargar jugadores
+		long dniBlancas	= Long.parseLong(txtDniBlancas.getText()); 
+		long dniNegras	= Long.parseLong(txtDniNegras.getText());
+
+		String nombreBlancas = null, apellBlancas = null, nombreNegras = null, apellNegras = null;
 		
+		if (bandera == 0){
+			bandera =1;
+			String[] datosJugadorBlancas = new String[2];
+			String[] datosJugadorNegras  = new String[2];
+			
+			datosJugadorBlancas = ctrl.recDatosJugador(dniBlancas);
+			datosJugadorNegras  = ctrl.recDatosJugador(dniNegras);
+			
+			nombreNegras  = datosJugadorNegras[0];
+			apellNegras	  = datosJugadorNegras[1];	
+			
+			nombreBlancas = datosJugadorBlancas[0];
+			apellBlancas  = datosJugadorBlancas[1];	
+			
+			if (datosJugadorBlancas[0].equals("")){
+				txtApellidoBlancas.setEnabled(true);
+				txtNombreBlancas.setEnabled(true);
+				pntPrincipal.repaint();
+			}else{
+				nombreBlancas = datosJugadorBlancas[0];
+				apellBlancas  = datosJugadorBlancas[1];		
+				txtApellidoBlancas.setText(apellBlancas);
+				txtNombreBlancas.setText(nombreBlancas);
+			}; 	
+			
+			if (datosJugadorNegras[0].equals("")){
+				txtApellidoNegras.setEnabled(true);
+				txtNombreNegras.setEnabled(true);
+				pntPrincipal.repaint();
+			}else{
+				nombreNegras  = datosJugadorNegras[0];
+				apellNegras	  = datosJugadorNegras[1];
+				txtApellidoNegras.setText(apellNegras);
+				txtNombreNegras.setText(nombreNegras);
+			};
+			
+			if (datosJugadorBlancas[0].equals("") || datosJugadorNegras[0].equals("")){
+				JOptionPane.showMessageDialog(null, "por favor complete campos disponibles ");
+			}
+			
+		}
 		
-		long dniBlancas      = Long.parseLong(txtDniBlancas.getText()); 
-		String nombreBlancas = txtNombreBlancas.getText();
-		String apellBlancas  = txtApellidoBlancas.getText();
+		nombreBlancas	= txtNombreBlancas.getText();
+		apellBlancas	= txtApellidoBlancas.getText();
+		nombreNegras	= txtNombreNegras.getText();
+		apellNegras		= txtApellidoNegras.getText();
 		
-		long dniNegras      = Long.parseLong(txtDniNegras.getText());
-		String nombreNegras = txtNombreNegras.getText();
-		String apellNegras  = txtApellidoNegras.getText();
-		
-		ctrl.nuevaPartida(dniBlancas,
-						  nombreBlancas,
-						  apellBlancas,
-						  dniNegras,
-						  nombreNegras,
-						  apellNegras);
-		
-		try {
-			pntAjedrez frame = new pntAjedrez(ctrl);
-			frame.setVisible(true);
-			pntPrincipal.setVisible(false);
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (!nombreBlancas.equals("") && !nombreNegras.equals("") && !apellBlancas.equals("") && !apellNegras.equals("") ){
+			//ctrl.setJugador(dniBlancas, apellBlancas, nombreBlancas);
+			//ctrl.setJugador(dniNegras, apellNegras, nombreNegras);
+			
+			ctrl.nuevaPartida(dniBlancas,
+					  nombreBlancas,
+					  apellBlancas,
+					  dniNegras,
+					  nombreNegras,
+					  apellNegras);
+	
+			try {
+				pntAjedrez frame = new pntAjedrez(ctrl);
+				frame.setVisible(true);
+				pntPrincipal.setVisible(false);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}
