@@ -1,13 +1,12 @@
 package cpData;
 
 import java.sql.*;
-
 import java.util.ArrayList;
 
-public class DataPartida {
+import cpDatos.Partida;
+import cpDatos.Piezas;
 
-//	public DataPartida(){
-//	};
+public class DataPartida {
 	
 public int recuperarPartida (long dniBlancas, long dniNegras){
 	
@@ -83,41 +82,69 @@ public void setJugador(long dniJugador, String apellJugador, String nombreJugado
 	
 	try{
 		stmt1  = Conexion.getInstancia().getConn().createStatement();
-		insert	="INSERT INTO jugadores " + "VALUES ("+dniJugador+", "+nombreJugador+","+apellJugador+")";
+		insert = "INSERT INTO `ajedrez`.`jugadores` (`dni`, `nombre`, `apellido`) VALUES ('" + Long.toString(dniJugador) +"', '"+ nombreJugador +"', '"+ apellJugador +"');";
 		stmt1.execute(insert);
-		
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
 	}
 
-public void setPartida(long dniBlancas, long dniNegras, int turno){
-	ResultSet rs1   		= null;
-	Statement stmt1, stmt2  = null;
-	String select, insert	= null;
+public void guardarPartida (Partida pa){
+	long dniBlancas = pa.getJugadorBlancas().getDni();
+	long dniNegras  = pa.getJugadorNegras().getDni();
+	int turno		= pa.getTurnoActual();
 	int idPartidaNueva;
 	
-	try {
-		stmt1  = Conexion.getInstancia().getConn().createStatement();
-		select = "SELECT MAX (idPartidas) FROM partidas";
-		rs1    = stmt1.executeQuery(select);
-		if(rs1!=null && rs1.next()){
-			idPartidaNueva = rs1.getInt("idPartida") + 1;
-		}else{
-			idPartidaNueva = 1;
-		}
-		stmt2  = Conexion.getInstancia().getConn().createStatement();
-		insert	="INSERT INTO partidas " + "VALUES ("+ idPartidaNueva +", "+ dniBlancas +","+ dniNegras + "," + turno + ")";
-		stmt2.execute(insert);
-		
-		
-	} catch (SQLException e) {
-		
-		e.printStackTrace();
+	idPartidaNueva = setPartida(dniBlancas, dniNegras, turno);
+	
+	for (String posicion : pa.tablero.keySet()) {
+		Piezas piezaActual = pa.tablero.get(posicion);
+		String tipoPieza = piezaActual.getTipoPieza();
+		String nombrePieza = piezaActual.getNombre();
+		String colorPieza = piezaActual.getColor();
+		setPosicion(idPartidaNueva, tipoPieza, nombrePieza, colorPieza, posicion);
 	}
 	
 	
 }
+
+private int setPartida(long dniBlancas, long dniNegras, int turno){
+	ResultSet rs1   		= null;
+	Statement stmt1, stmt2  = null;
+	String select, insert	= null;
+	int idPartidaNueva = 0;
+	
+	try {
+		stmt1  = Conexion.getInstancia().getConn().createStatement();
+		select = "SELECT max(idPartida) FROM partidas;";
+		rs1    = stmt1.executeQuery(select);
+		if(rs1!=null && rs1.next()){
+			idPartidaNueva = rs1.getInt(1) +1;
+		}else{
+			idPartidaNueva = 1;
+		}
+		stmt2  = Conexion.getInstancia().getConn().createStatement();
+		insert = "INSERT INTO `ajedrez`.`partidas` (`idPartida`, `dniBlancas`, `dniNegras`, `turno`) VALUES ('"+ Integer.toString(idPartidaNueva) + "', '"+ Long.toString(dniBlancas) +"', '" + Long.toString(dniNegras) + "', '"+ Integer.toString(turno) +"');";
+		stmt2.execute(insert);		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	return idPartidaNueva;
+}
+
+private void setPosicion(int idPartida, String tipoPieza, String nombrePieza, String color, String posicion){
+	Statement stmt1 = null;
+	String	  insert= null;
+	
+	try{
+		stmt1  = Conexion.getInstancia().getConn().createStatement();
+		insert = "INSERT INTO `ajedrez`.`posiciones` (`idPartida`, `tipoPieza`, `nombrePieza` , `colorPieza` , `posicion`) VALUES ('" + Integer.toString(idPartida) +"', '"+ tipoPieza +"', '"+ nombrePieza +"', '"+ color +"', '"+ posicion +"');";
+		stmt1.execute(insert);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
 
 }
 	

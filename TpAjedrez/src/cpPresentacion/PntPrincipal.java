@@ -38,6 +38,7 @@ public class PntPrincipal {
 	private JTextField txtNombreNegras;
 	private JTextField txtApellidoNegras;
 	private int bandera = 0;
+	private boolean insertarBlanco = false, insertarNegro = false;
 
 
 	/**
@@ -210,7 +211,9 @@ public class PntPrincipal {
 		String nombreBlancas = null, apellBlancas = null, nombreNegras = null, apellNegras = null;
 		
 		if (bandera == 0){
-			bandera =1;
+			
+			bandera = 1;
+			
 			String[] datosJugadorBlancas = new String[2];
 			String[] datosJugadorNegras  = new String[2];
 			
@@ -227,6 +230,7 @@ public class PntPrincipal {
 				txtApellidoBlancas.setEnabled(true);
 				txtNombreBlancas.setEnabled(true);
 				pntPrincipal.repaint();
+				insertarBlanco = true;
 			}else{
 				nombreBlancas = datosJugadorBlancas[0];
 				apellBlancas  = datosJugadorBlancas[1];		
@@ -238,6 +242,7 @@ public class PntPrincipal {
 				txtApellidoNegras.setEnabled(true);
 				txtNombreNegras.setEnabled(true);
 				pntPrincipal.repaint();
+				insertarNegro = true;
 			}else{
 				nombreNegras  = datosJugadorNegras[0];
 				apellNegras	  = datosJugadorNegras[1];
@@ -256,9 +261,13 @@ public class PntPrincipal {
 		nombreNegras	= txtNombreNegras.getText();
 		apellNegras		= txtApellidoNegras.getText();
 		
-		if (!nombreBlancas.equals("") && !nombreNegras.equals("") && !apellBlancas.equals("") && !apellNegras.equals("") ){
-			//ctrl.setJugador(dniBlancas, apellBlancas, nombreBlancas);
-			//ctrl.setJugador(dniNegras, apellNegras, nombreNegras);
+		if (!nombreBlancas.equals("") && !nombreNegras.equals("") && !apellBlancas.equals("") && !apellNegras.equals("")){
+			if (insertarBlanco){
+				ctrl.setJugador(dniBlancas, apellBlancas, nombreBlancas);
+			}
+			if (insertarNegro){
+				ctrl.setJugador(dniNegras, apellNegras, nombreNegras);
+			}
 			
 			ctrl.nuevaPartida(dniBlancas,
 					  nombreBlancas,
@@ -270,7 +279,6 @@ public class PntPrincipal {
 			try {
 				pntAjedrez frame = new pntAjedrez(ctrl);
 				frame.setVisible(true);
-				pntPrincipal.setVisible(false);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

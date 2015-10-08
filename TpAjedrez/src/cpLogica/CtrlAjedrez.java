@@ -27,7 +27,7 @@ public class CtrlAjedrez {
 		}else{
 			int opcion = JOptionPane.YES_NO_CANCEL_OPTION;
 			JOptionPane.showConfirmDialog(null,"Existe una partida guardada para estos jugadores. ¿Desea continuarla?","Atención!",opcion);
-			if (opcion == JOptionPane.YES_OPTION){
+			if ( opcion == JOptionPane.YES_OPTION ){
 				p.setPosiciones(dp.getPosiciones(idPartida));
 				p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
 			}else{
@@ -40,8 +40,8 @@ public class CtrlAjedrez {
 		
 	}
 
-	public void moverPiezas(String origen, String destino){
-		p.moverPiezas(origen, destino);
+	public boolean moverPiezas(String origen, String destino){
+		return p.moverPiezas(origen, destino);
 	}
 	
 	public Jugador devolverTurno(){
@@ -61,9 +61,9 @@ public class CtrlAjedrez {
 	public void setJugador(long dniJugador, String apellJugador, String nombreJugador){
 		dp.setJugador(dniJugador, apellJugador, nombreJugador);
 	}
-	
-	public void setPartida(){
-		dp.setPartida(p.jugadorBlancas.getDni(), p.jugadorNegras.getDni(), p.turnoActual);
+
+	public void guardarPartida() {
+		dp.guardarPartida(p);
 	}
 	
 	

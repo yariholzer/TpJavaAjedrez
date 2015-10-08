@@ -189,7 +189,11 @@ public class pntAjedrez extends JFrame {
 			if(columnas.matches("[a-h]"))
 				{
 				if (1<= filas && filas <= 8)
-					{ctrl.moverPiezas(origen, destino);
+					{boolean gano;
+					gano=ctrl.moverPiezas(origen, destino);
+					if (gano){
+						this.setVisible(false);
+					}
 					txtTurno.setText(ctrl.devolverTurno().getNombre());}
 					
 					else JOptionPane.showMessageDialog(null, "la fila de destino ingresada es incorrecta ");
@@ -210,7 +214,9 @@ public class pntAjedrez extends JFrame {
 		int opcion;
 		opcion = JOptionPane.YES_NO_CANCEL_OPTION;
 		JOptionPane.showConfirmDialog(null,"¿Desea guardar la partida antes de salir?","Guardar",opcion);
-		if (opcion == JOptionPane.YES_OPTION){};
+		if (opcion == JOptionPane.YES_OPTION){
+			ctrl.guardarPartida();
+		};
 		
 	}
 	

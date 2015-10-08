@@ -12,7 +12,7 @@ public class Partida {
 	
 	public int turnoActual;
 
-	HashMap<String,Piezas> tablero =new HashMap<String,Piezas>();
+	public HashMap<String,Piezas> tablero =new HashMap<String,Piezas>();
 	public Jugador jugadorBlancas = new Jugador();
 	public Jugador jugadorNegras  = new Jugador();
 	
@@ -21,6 +21,22 @@ public class Partida {
 	
 	}	
 	
+	public int getTurnoActual() {
+		return turnoActual;
+	}
+
+	public HashMap<String, Piezas> getTablero() {
+		return tablero;
+	}
+
+	public Jugador getJugadorBlancas() {
+		return jugadorBlancas;
+	}
+
+	public Jugador getJugadorNegras() {
+		return jugadorNegras;
+	}
+
 	public int getFila(String ubicacion ){
 		int fila = Integer.parseInt(ubicacion.substring(1,2));
 		return fila;
@@ -128,18 +144,19 @@ public class Partida {
 		
 	}
 	
-	public void moverPiezas(String origen, String destino){//1
+	public boolean moverPiezas(String origen, String destino){//1
 		if(jugadorCorrecto(origen, devolverTurno()))
 		{	
-		String colorDestino;
+		String colorDestino = null, tipoDestino = "";
 		if (tablero.containsKey(origen)){
-			if(tablero.containsKey(destino))
-				{colorDestino=tablero.get(destino).getColor();}
-			else
-				{colorDestino=null;}
+			if(tablero.containsKey(destino)){
+				colorDestino = tablero.get(destino).getColor();
+				tipoDestino  = tablero.get(destino).getTipoPieza();
+				}
 			if (tablero.get(origen).getColor().equals(colorDestino))
 			{//6
 				JOptionPane.showMessageDialog(null, "En la posiocion de destino hay una ficha del mismo color");
+				return false;
 			}//6
 			else{//3
 				if (tablero.get(origen).getTipoPieza().equals("peon") && colorDestino != null ){					
@@ -149,30 +166,41 @@ public class Partida {
 						tablero.remove(origen);
 						JOptionPane.showMessageDialog(null, "la ficha fue movida");
 						turnoActual++;
+						return false;
 					}//5
 				else{//4
 					JOptionPane.showMessageDialog(null, "la ficha elegida no se puede mover de esa manera");
+					return false;
 					}//4
 					
 				}else{
 					if (tablero.get(origen).validarMovimiento(origen, destino))
 						{//5
-							tablero.put(destino, tablero.get(origen));
-							tablero.remove(origen);
-							JOptionPane.showMessageDialog(null, "la ficha fue movida");
-							turnoActual++;
+							if (tipoDestino.equals("rey")){
+								JOptionPane.showMessageDialog(null, "El ganador es " + tablero.get(origen).getColor());
+								return true;
+							}else{
+								tablero.put(destino, tablero.get(origen));
+								tablero.remove(origen);
+								JOptionPane.showMessageDialog(null, "la ficha fue movida");
+								turnoActual++;
+								return false;
+							}
 						}//5
 					else{//4
 						JOptionPane.showMessageDialog(null, "la ficha elegida no se puede mover de esa manera");
+						return false;
 						}//4
 					}//3
 				}
 			}//7	
 		else{//2 
 			JOptionPane.showMessageDialog(null, "MOVIMIENTO NO VALIDO!! en la posicion de origen no hay ficha");
+			return false;
 			}//2;
 		}else
 			JOptionPane.showMessageDialog(null, "La ficha no corresponde al jugador actual ");
+			return false;
 }//1
 
 	public void cargarJugadores(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras) {			
@@ -221,7 +249,7 @@ public class Partida {
 		try {
 			while (rsPosiciones!=null && rsPosiciones.next()) {
 				tipoPieza   = rsPosiciones.getString("tipoPieza");
-				nombrePieza = rsPosiciones.getInt("nombrePieza");
+				nombrePieza = Integer.parseInt(rsPosiciones.getString("nombrePieza").substring(1,2));
 				colorPieza  = rsPosiciones.getString("colorPieza");
 				posicion 	= rsPosiciones.getString("posicion");
 				
@@ -248,7 +276,7 @@ public class Partida {
 					tablero.put(posicion,caballo);
 					break;
 					
-				case "aflil":
+				case "alfil":
 					Alfil alfil= new Alfil();
 					alfil.setColor(colorPieza);
 					alfil.setNombre(nombrePieza);
