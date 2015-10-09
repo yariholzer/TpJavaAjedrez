@@ -7,8 +7,8 @@ public class Conexion {
 	private String dbDriver="com.mysql.jdbc.Driver";
 	private String host="localhost";
 	private String port="3306";
-	private String user="gino";
-	private String pass="12345";
+	private String user="yari";
+	private String pass="1234";
 	private String db="ajedrez";
 	
 	private Connection conn;

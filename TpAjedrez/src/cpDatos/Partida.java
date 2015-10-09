@@ -164,7 +164,6 @@ public class Partida {
 					{//5
 						tablero.put(destino, tablero.get(origen));
 						tablero.remove(origen);
-						JOptionPane.showMessageDialog(null, "la ficha fue movida");
 						turnoActual++;
 						return false;
 					}//5
@@ -182,7 +181,7 @@ public class Partida {
 							}else{
 								tablero.put(destino, tablero.get(origen));
 								tablero.remove(origen);
-								JOptionPane.showMessageDialog(null, "la ficha fue movida");
+								
 								turnoActual++;
 								return false;
 							}

@@ -26,8 +26,7 @@ public class CtrlAjedrez {
 			p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
 		}else{
 			int opcion = JOptionPane.YES_NO_CANCEL_OPTION;
-			JOptionPane.showConfirmDialog(null,"Existe una partida guardada para estos jugadores. ¿Desea continuarla?","Atención!",opcion);
-			if ( opcion == JOptionPane.YES_OPTION ){
+			if (JOptionPane.showConfirmDialog(null,"Existe una partida guardada para estos jugadores. ¿Desea continuarla?","Atención!",opcion)==JOptionPane.YES_OPTION ){
 				p.setPosiciones(dp.getPosiciones(idPartida));
 				p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
 			}else{
