@@ -1,0 +1,25 @@
+@CHARSET "ISO-8859-1";
+* {margin: 0; padding: 0}
+header {
+	width: 100%;
+	margin: auto;
+	overflow: auto;
+	background:graytext;
+	}
+	
+content {
+	width: 65%;
+	float: left;
+	background:aqua;
+	text-align: center;
+	}
+sidebar {
+	width: 35%;
+	float: right;
+	text-align: center;
+	background-color:navy; 
+	
+	}
+h1 {
+	text-align: center;
+}
