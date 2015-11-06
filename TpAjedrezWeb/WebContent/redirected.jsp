@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <%=request.getAttribute("Dni1")%>
+  <%=request.getAttribute("DniBlancas")%>
+  <%=request.getAttribute("ApellidoBlancas")%>
+  <%=request.getAttribute("NombreBlancas")%>
+  <%=request.getAttribute("DniNegras")%>
+  <%=request.getAttribute("ApellidoNegras")%>
+  <%=request.getAttribute("NombreNegras")%>
 </body>
 </html>
