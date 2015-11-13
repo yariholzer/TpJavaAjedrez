@@ -1,13 +1,16 @@
 package aim;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import cpDatos.Piezas;
 import cpLogica.CtrlAjedrez;
 
 @WebServlet("/login")
@@ -18,6 +21,7 @@ public class Login  extends HttpServlet  {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		cpLogica.CtrlAjedrez ctrl = new CtrlAjedrez();
+		HttpSession session = request.getSession();
 		
 		Long dniJugadorBlancas 			=Long.parseLong(request.getParameter("DniBlancas"));
 		String apellidoJugadorBlancas 	=request.getParameter("ApellidoBlancas");
@@ -29,9 +33,11 @@ public class Login  extends HttpServlet  {
 		
 		String[] datosJugadorBlancas = new String[2];
 		String[] datosJugadorNegras  = new String[2];
+		
 		// busca jugadores en DB
 		datosJugadorBlancas = ctrl.recDatosJugador(dniJugadorBlancas);
 		datosJugadorNegras  = ctrl.recDatosJugador(dniJugadorNegras);
+		
 		// si no los encuentra, crea y settea datos
 		
 		if (datosJugadorBlancas[0].equals("")){
@@ -57,6 +63,17 @@ public class Login  extends HttpServlet  {
 		request.setAttribute("ApellidoNegras",apellidoJugadorNegras);
 		request.setAttribute("NombreNegras", nombreJugadorNegras);
 		request.getRequestDispatcher("redirected.jsp").forward(request, response);
+	
+	
+	
+		// busca partita en DB
+		
+		HashMap<String,Piezas> tablero =new HashMap<String,Piezas>();
+		tablero = ctrl.nuevaPartida(dniJugadorBlancas, nombreJugadorBlancas, apellidoJugadorBlancas, dniJugadorNegras, nombreJugadorNegras, apellidoJugadorNegras);
+		
+		;
+		
+        session.setAttribute("tablero", tablero.get("a1"));
 	}
 
 	

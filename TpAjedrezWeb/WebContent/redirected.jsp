@@ -13,5 +13,7 @@
   <%=request.getAttribute("DniNegras")%>
   <%=request.getAttribute("ApellidoNegras")%>
   <%=request.getAttribute("NombreNegras")%>
+  
+  <%=session.getAttribute("tablero")%>
 </body>
 </html>

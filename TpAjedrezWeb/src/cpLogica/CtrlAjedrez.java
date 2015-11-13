@@ -14,7 +14,7 @@ public class CtrlAjedrez {
 	Partida p      = new Partida();
 	DataPartida dp = new DataPartida();
 	
-	public void nuevaPartida(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras){
+	public  HashMap<String, Piezas> nuevaPartida(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras){
 		
 		int idPartida=0;
 		
@@ -23,21 +23,14 @@ public class CtrlAjedrez {
 		if (idPartida==0){
 			p.inicializar("BLANCO");
 			p.inicializar("NEGRO");
-			p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
-		}else{
-			int opcion = JOptionPane.YES_NO_CANCEL_OPTION;
-			if (JOptionPane.showConfirmDialog(null,"Existe una partida guardada para estos jugadores. ¿Desea continuarla?","Atención!",opcion)==JOptionPane.YES_OPTION ){
-				p.setPosiciones(dp.getPosiciones(idPartida));
-				p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
-			}else{
-				p.inicializar("BLANCO");
-				p.inicializar("NEGRO");
-				p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
+			}
+		else
+			{
+			p.setPosiciones(dp.getPosiciones(idPartida));
 			};
+		return p.getTablero();
 			
-		}
-		
-	}
+}
 
 	public boolean moverPiezas(String origen, String destino){
 		return p.moverPiezas(origen, destino);
