@@ -21,7 +21,7 @@ public class Torre extends Piezas{
 	
 	@Override
 	public boolean validarMovimiento(String origen, String destino) {
-		
+		/*
 		String filaInicial = origen.substring(0,1);
 		String filaFinal = destino.substring(0,1);
 		int columInicial = Integer.parseInt(origen.substring(1, 2));
@@ -32,7 +32,9 @@ public class Torre extends Piezas{
 		}else {
 			return false;
 		}
-
+		*/
+		
+		return true;
 	}
 
 	@Override

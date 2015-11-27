@@ -10,7 +10,7 @@ import javax.swing.text.StyledEditorKit.BoldAction;
 
 public class Partida {
 	
-	public int turnoActual;
+	public int turnoActual = 0;
 
 	public HashMap<String,Piezas> tablero =new HashMap<String,Piezas>();
 	public Jugador jugadorBlancas = new Jugador();
@@ -144,7 +144,10 @@ public class Partida {
 		
 	}
 	
-	public boolean moverPiezas(String origen, String destino){//1
+	public String moverPiezas(String origen, String destino){//1
+		if (origen.equals("")||destino.equals("")){
+			return "";
+		}
 		if(jugadorCorrecto(origen, devolverTurno()))
 		{	
 		String colorDestino = null, tipoDestino = "";
@@ -155,8 +158,7 @@ public class Partida {
 				}
 			if (tablero.get(origen).getColor().equals(colorDestino))
 			{//6
-				JOptionPane.showMessageDialog(null, "En la posiocion de destino hay una ficha del mismo color");
-				return false;
+				return "En la posiocion de destino hay una ficha del mismo color";
 			}//6
 			else{//3
 				if (tablero.get(origen).getTipoPieza().equals("peon") && colorDestino != null ){					
@@ -165,41 +167,36 @@ public class Partida {
 						tablero.put(destino, tablero.get(origen));
 						tablero.remove(origen);
 						turnoActual++;
-						return false;
+						return "Ficha movida";
 					}//5
 				else{//4
-					JOptionPane.showMessageDialog(null, "la ficha elegida no se puede mover de esa manera");
-					return false;
+					return "la ficha elegida no se puede mover de esa manera";
 					}//4
 					
 				}else{
 					if (tablero.get(origen).validarMovimiento(origen, destino))
 						{//5
 							if (tipoDestino.equals("rey")){
-								JOptionPane.showMessageDialog(null, "El ganador es " + tablero.get(origen).getColor());
-								return true;
+								return "rey";
 							}else{
 								tablero.put(destino, tablero.get(origen));
 								tablero.remove(origen);
 								
 								turnoActual++;
-								return false;
+								return "Ficha movida";
 							}
 						}//5
 					else{//4
-						JOptionPane.showMessageDialog(null, "la ficha elegida no se puede mover de esa manera");
-						return false;
+						return "la ficha elegida no se puede mover de esa manera";
 						}//4
 					}//3
 				}
 			}//7	
 		else{//2 
-			JOptionPane.showMessageDialog(null, "MOVIMIENTO NO VALIDO!! en la posicion de origen no hay ficha");
-			return false;
+			return "MOVIMIENTO NO VALIDO!! en la posicion de origen no hay ficha";
 			}//2;
 		}else
-			JOptionPane.showMessageDialog(null, "La ficha no corresponde al jugador actual ");
-			return false;
+			return "La ficha no corresponde al jugador actual ";
 }//1
 
 	public void cargarJugadores(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras) {			
@@ -226,6 +223,23 @@ public class Partida {
 			return jugadorNegras;}
 		
 		}
+	
+	public String[] devolverTurnoActual(){
+		String[] datosJugador = new String[2];
+		if(turnoActual%2==0){
+			datosJugador[0]=jugadorBlancas.getApellido();
+			datosJugador[1]=jugadorBlancas.getNombre();
+					
+			return datosJugador;}
+		else{
+			
+			datosJugador[0]=jugadorNegras.getApellido();
+			datosJugador[1]=jugadorNegras.getNombre();
+			return datosJugador;}
+		
+		
+		}
+	
 
 	public String devolverColor(String posicion){
 		String color;

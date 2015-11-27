@@ -15,13 +15,14 @@ import cpLogica.CtrlAjedrez;
 
 @WebServlet("/login")
 public class Login  extends HttpServlet  {
+	
 	private static final long serialVersionUID = 1L;
 
 	public Login(){}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		cpLogica.CtrlAjedrez ctrl = new CtrlAjedrez();
-		HttpSession session = request.getSession();
+		HttpSession se = request.getSession();
 		
 		Long dniJugadorBlancas 			=Long.parseLong(request.getParameter("DniBlancas"));
 		String apellidoJugadorBlancas 	=request.getParameter("ApellidoBlancas");
@@ -55,25 +56,31 @@ public class Login  extends HttpServlet  {
 		}
 		
 		
-		request.setAttribute("DniBlancas", dniJugadorBlancas);
-		request.setAttribute("ApellidoBlancas",apellidoJugadorBlancas);
-		request.setAttribute("NombreBlancas", nombreJugadorBlancas);
+		se.setAttribute("DniBlancas", dniJugadorBlancas);
+		se.setAttribute("ApellidoBlancas",apellidoJugadorBlancas);
+		se.setAttribute("NombreBlancas", nombreJugadorBlancas);
 		
-		request.setAttribute("DniNegras", dniJugadorNegras);
-		request.setAttribute("ApellidoNegras",apellidoJugadorNegras);
-		request.setAttribute("NombreNegras", nombreJugadorNegras);
-		request.getRequestDispatcher("redirected.jsp").forward(request, response);
+		se.setAttribute("DniNegras", dniJugadorNegras);
+		se.setAttribute("ApellidoNegras",apellidoJugadorNegras);
+		se.setAttribute("NombreNegras", nombreJugadorNegras);
 	
 	
-	
-		// busca partita en DB
+		// busca partida en DB
 		
 		HashMap<String,Piezas> tablero =new HashMap<String,Piezas>();
 		tablero = ctrl.nuevaPartida(dniJugadorBlancas, nombreJugadorBlancas, apellidoJugadorBlancas, dniJugadorNegras, nombreJugadorNegras, apellidoJugadorNegras);
+		se.setAttribute("tablero", tablero);
 		
-		;
+		// devuelve turno
+		String[] turnoActual= new String[2];
+		turnoActual = ctrl.devolverTurnoActual();
+		se.setAttribute("NombreTAct", turnoActual[1]);
+		se.setAttribute("ApellidoTAct", turnoActual[0]);
+		se.setAttribute("Controlador", ctrl);
 		
-        session.setAttribute("tablero", tablero.get("a1"));
+		
+		
+		request.getRequestDispatcher("game.jsp").forward(request, response);
 	}
 
 	

@@ -23,16 +23,18 @@ public class CtrlAjedrez {
 		if (idPartida==0){
 			p.inicializar("BLANCO");
 			p.inicializar("NEGRO");
+			p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
 			}
 		else
 			{
 			p.setPosiciones(dp.getPosiciones(idPartida));
+			p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
 			};
 		return p.getTablero();
 			
 }
 
-	public boolean moverPiezas(String origen, String destino){
+	public String moverPiezas(String origen, String destino){
 		return p.moverPiezas(origen, destino);
 	}
 	
@@ -56,6 +58,14 @@ public class CtrlAjedrez {
 
 	public void guardarPartida() {
 		dp.guardarPartida(p);
+	}
+
+	public String[] devolverTurnoActual() {
+		return p.devolverTurnoActual();
+	}
+	
+	public HashMap<String,Piezas> recuperarTablero(){
+		return p.getTablero();
 	}
 	
 	

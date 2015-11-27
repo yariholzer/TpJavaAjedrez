@@ -7,4 +7,5 @@ public abstract class Piezas {
 	public abstract String getNombre();
 	public abstract String getColor();
 	public abstract String getTipoPieza();
+	
 }
