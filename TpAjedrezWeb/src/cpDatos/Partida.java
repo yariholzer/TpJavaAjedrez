@@ -145,9 +145,6 @@ public class Partida {
 	}
 	
 	public String moverPiezas(String origen, String destino){//1
-		if (origen.equals("")||destino.equals("")){
-			return "";
-		}
 		if(jugadorCorrecto(origen, devolverTurno()))
 		{	
 		String colorDestino = null, tipoDestino = "";

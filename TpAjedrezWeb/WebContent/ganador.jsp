@@ -4,14 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="login.css" rel="stylesheet">
+<link href="bootstrap.min.css" rel="stylesheet">
 <title>Juego termiando</title>
 </head>
 <body>
 	 <form class="form-signin" name="game" action="game" method="post">
-		<h1>El ganador es  	</h1>
-			<%=session.getAttribute("ApellidoTAct")%>
-			<%=session.getAttribute("NombreTAct")%>
-	
+		<div class="ganador">
+				
+				<img src="trofeo.jpg" alt="Trofeo de victoria" style="width:304px;height:228px;">
+				El ganador es
+				<br>  	
+				<%=session.getAttribute("ApellidoTAct")%>
+				<%=session.getAttribute("NombreTAct")%>
+		</div>	
       </form>
 </body>
 </html>

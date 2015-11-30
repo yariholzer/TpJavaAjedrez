@@ -78,6 +78,9 @@ public class Login  extends HttpServlet  {
 		se.setAttribute("ApellidoTAct", turnoActual[0]);
 		se.setAttribute("Controlador", ctrl);
 		
+		//devuelve mensaje vacio
+		se.setAttribute("resultado", "Bienvenidos a la partida");
+		
 		
 		
 		request.getRequestDispatcher("game.jsp").forward(request, response);
