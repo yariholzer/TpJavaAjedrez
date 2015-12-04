@@ -2,15 +2,23 @@ body {
   padding-top: 5px;
   padding-bottom: 5px;
   background-color: #eee;
+
+  
 }
 .ganador{
 	text-align: center;
 	font-size: xx-large;
 	padding-top: 40px;
 }
+#link {
+	text-decoration:underline;
+	margin-left: 110px;
+	
+	
+}
 
 #tablero {
-	background-color: red;
+	background-color: #C37611;
 }
 #centrado{
 	text-align: center;

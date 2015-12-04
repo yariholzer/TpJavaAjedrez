@@ -42,9 +42,7 @@ public Game(){}
 		String resultado = ctrl.moverPiezas(posOrigen, posDestino);
 		
 		if (resultado.equals("rey")) {
-			se.setAttribute("ApellidoTAct", turnoActual[1]);
-			se.setAttribute("NombreTAct", turnoActual[0]);
-			request.getRequestDispatcher("ganador.jsp").forward(request, response);
+			ganaPartida(request, response, se, turnoActual);
 		}else{
 			se.setAttribute("resultado", resultado);
 			tablero = ctrl.recuperarTablero();
@@ -52,11 +50,22 @@ public Game(){}
 			request.getRequestDispatcher("game.jsp").forward(request, response);
 		}		
 		
+		//devuelve turno
+		
+		turnoActual = ctrl.devolverTurnoActual();
+		se.setAttribute("NombreTAct", turnoActual[1]);
+		se.setAttribute("ApellidoTAct", turnoActual[0]);
 		
 		
+
 		
-		//se.setAttribute("tablero", tablero);
-		
+	}
+
+	private void ganaPartida(HttpServletRequest request, HttpServletResponse response, HttpSession se,
+			String[] turnoActual) throws ServletException, IOException {
+		se.setAttribute("ApellidoTAct", turnoActual[1]);
+		se.setAttribute("NombreTAct", turnoActual[0]);
+		request.getRequestDispatcher("ganador.jsp").forward(request, response);
 	}
 
 }

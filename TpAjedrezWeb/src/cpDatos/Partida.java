@@ -145,6 +145,8 @@ public class Partida {
 	}
 	
 	public String moverPiezas(String origen, String destino){//1
+		String resultado=validacionInicial(origen, destino);
+		if (resultado.equals("valido")){
 		if(jugadorCorrecto(origen, devolverTurno()))
 		{	
 		String colorDestino = null, tipoDestino = "";
@@ -194,6 +196,7 @@ public class Partida {
 			}//2;
 		}else
 			return "La ficha no corresponde al jugador actual ";
+		}else return resultado;
 }//1
 
 	public void cargarJugadores(long dniBlancas, String nombreBlancas, String apellBlancas, long dniNegras, String nombreNegras, String apellNegras) {			
@@ -316,4 +319,36 @@ public class Partida {
 		
 	}
 	
+	public String validacionInicial(String origen, String destino){
+		String columnas, resultado= null;
+		int filas;
+		boolean bandera=false;
+		columnas = origen.substring(0,1);
+		filas =Integer.parseInt(origen.substring(1,2));
+	
+		if(columnas.matches("[a-h]"))
+			{
+				if (1<= filas && filas <= 8){
+					bandera = true;}
+				else resultado="la fila de origen ingresada es incorrecta ";
+	
+			}else 
+				resultado="la columna de origen ingresada es incorrecta ";
+	
+		if (bandera==true)
+			{
+			columnas = destino.substring(0,1);
+			filas =Integer.parseInt(destino.substring(1,2));
+		
+		if(columnas.matches("[a-h]"))
+			{
+			if (1<= filas && filas <= 8){
+				resultado="valido";
+				}
+				else resultado="la fila de destino ingresada es incorrecta ";
+		
+			}else 
+				resultado="la columna de destino ingresada es incorrecta ";}
+		return resultado;
+	}
 }

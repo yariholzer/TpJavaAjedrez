@@ -17,7 +17,18 @@
 				<br>  	
 				<%=session.getAttribute("ApellidoTAct")%>
 				<%=session.getAttribute("NombreTAct")%>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
 		</div>	
+		
+				 <a href="login.html" id="link">volver al inicio</a>
+			
+		
       </form>
+     
 </body>
 </html>

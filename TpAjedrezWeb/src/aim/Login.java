@@ -74,8 +74,8 @@ public class Login  extends HttpServlet  {
 		// devuelve turno
 		String[] turnoActual= new String[2];
 		turnoActual = ctrl.devolverTurnoActual();
-		se.setAttribute("NombreTAct", turnoActual[1]);
-		se.setAttribute("ApellidoTAct", turnoActual[0]);
+		se.setAttribute("NombreTAct", nombreJugadorBlancas);
+		se.setAttribute("ApellidoTAct", apellidoJugadorBlancas);
 		se.setAttribute("Controlador", ctrl);
 		
 		//devuelve mensaje vacio
