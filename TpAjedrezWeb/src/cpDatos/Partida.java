@@ -8,6 +8,8 @@ import javax.swing.DebugGraphics;
 import javax.swing.JOptionPane;
 import javax.swing.text.StyledEditorKit.BoldAction;
 
+import cpData.Conexion;
+
 public class Partida {
 	
 	public int turnoActual = 0;
@@ -317,6 +319,8 @@ public class Partida {
 			e.printStackTrace();
 		}
 		
+		Conexion.getInstancia().releaseConn();
+		
 	}
 	
 	public String validacionInicial(String origen, String destino){
@@ -350,5 +354,9 @@ public class Partida {
 			}else 
 				resultado="la columna de destino ingresada es incorrecta ";}
 		return resultado;
+	}
+
+	public void setTurno(int turno) {
+		turnoActual = turno;
 	}
 }

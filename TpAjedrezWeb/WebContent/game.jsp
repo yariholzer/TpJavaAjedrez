@@ -18,13 +18,15 @@
 	<form class="" name="game" action="play" method="post">
       	<header> 
       	<h2 class="form-signin-heading">Pantalla de juego</h2>
-      	<label h3>Jugadores  </label> 
+      	<label h3><u>Jugadores </u></label> 
       	<br>
-      	<%=session.getAttribute("DniBlancas")%>
+      	<b>Blancas:</b>
+      
 		<%=session.getAttribute("ApellidoBlancas")%>
 		<%=session.getAttribute("NombreBlancas")%>
 		<br>
-		<%=session.getAttribute("DniNegras")%>
+		<b>Negras  :</b>
+	
 		<%=session.getAttribute("ApellidoNegras")%>
 		<%=session.getAttribute("NombreNegras")%>
 		<br>
@@ -109,10 +111,14 @@
 				<button class="margensuperior btn btn-lg btn-primary btn-block" type="submit">Mover</button>
 			</div>
 
+	        
+      </form>
+      <br>
+      <form class="form-signin" name="save" action="save" method="post">
+      <br>
+		 <button class="btn btn-lg btn-primary btn-block margensuperior" id="salir" type="submit">guardar y salir</button>
+			
 		
-	
-       	
-        
       </form>
 
     </div>

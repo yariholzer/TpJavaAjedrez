@@ -28,41 +28,38 @@ public Game(){}
 		cpLogica.CtrlAjedrez ctrl = (cpLogica.CtrlAjedrez) se.getAttribute("Controlador");
 		HashMap<String,Piezas> tablero = (HashMap<String,Piezas>)se.getAttribute("tablero");
 		
-		//devuelve turno
-		
-				String[] turnoActual = new String[2];
-				turnoActual = ctrl.devolverTurnoActual();
-				se.setAttribute("NombreTAct", turnoActual[1]);
-				se.setAttribute("ApellidoTAct", turnoActual[0]);
+				
+		String[] turnoActual = new String[2];
 		
 		//mover piezas
 		
-		String posOrigen = request.getParameter("posOrigen");
-		String posDestino = request.getParameter("posDestino");
+		String posOrigen = request.getParameter("posOrigen").toLowerCase();
+		String posDestino = request.getParameter("posDestino").toLowerCase();
 		String resultado = ctrl.moverPiezas(posOrigen, posDestino);
 		
 		if (resultado.equals("rey")) {
+			turnoActual = ctrl.devolverTurnoActual();
+			se.setAttribute("NombreTAct", turnoActual[1]);
+			se.setAttribute("ApellidoTAct", turnoActual[0]);
 			ganaPartida(request, response, se, turnoActual);
 		}else{
 			se.setAttribute("resultado", resultado);
 			tablero = ctrl.recuperarTablero();
 			se.setAttribute("tablero", tablero);
+			
+			//devuelve turno
+			turnoActual = ctrl.devolverTurnoActual();
+			se.setAttribute("NombreTAct", turnoActual[1]);
+			se.setAttribute("ApellidoTAct", turnoActual[0]);
+			
 			request.getRequestDispatcher("game.jsp").forward(request, response);
 		}		
-		
-		//devuelve turno
-		
-		turnoActual = ctrl.devolverTurnoActual();
-		se.setAttribute("NombreTAct", turnoActual[1]);
-		se.setAttribute("ApellidoTAct", turnoActual[0]);
-		
-		
 
 		
 	}
 
 	private void ganaPartida(HttpServletRequest request, HttpServletResponse response, HttpSession se,
-			String[] turnoActual) throws ServletException, IOException {
+		String[] turnoActual) throws ServletException, IOException {
 		se.setAttribute("ApellidoTAct", turnoActual[1]);
 		se.setAttribute("NombreTAct", turnoActual[0]);
 		request.getRequestDispatcher("ganador.jsp").forward(request, response);

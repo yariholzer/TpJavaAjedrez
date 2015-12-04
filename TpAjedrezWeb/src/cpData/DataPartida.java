@@ -25,6 +25,7 @@ public int recuperarPartida (long dniBlancas, long dniNegras){
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
+	Conexion.getInstancia().releaseConn();
 	return idPartida;
 }
 
@@ -43,7 +44,7 @@ public ResultSet getPosiciones(int idPartida) {
 			
 			e.printStackTrace();
 		}
-		
+
 		return rs1;
 		
 	}
@@ -71,7 +72,7 @@ public String[] recDatosJugador(long dni) {
 		
 		e.printStackTrace();
 	}
-	
+	Conexion.getInstancia().releaseConn();
 	return datosJugador;
 };
 
@@ -86,15 +87,24 @@ public void setJugador(long dniJugador, String apellJugador, String nombreJugado
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
+	Conexion.getInstancia().releaseConn();
 	}
 
 public void guardarPartida (Partida pa){
 	long dniBlancas = pa.getJugadorBlancas().getDni();
 	long dniNegras  = pa.getJugadorNegras().getDni();
 	int turno		= pa.getTurnoActual();
-	int idPartidaNueva;
+	int idPartidaNueva, idPartidaExistente;
 	
-	idPartidaNueva = setPartida(dniBlancas, dniNegras, turno);
+	idPartidaExistente = recuperarPartida(dniBlancas, dniNegras);
+	
+	if (idPartidaExistente==0){
+		idPartidaNueva = setPartida(dniBlancas, dniNegras, turno);
+	}else{
+		idPartidaNueva = idPartidaExistente;
+		borrarPosiciones(idPartidaExistente);
+		actualizarTurno(idPartidaExistente , pa.getTurnoActual());
+	}
 	
 	for (String posicion : pa.tablero.keySet()) {
 		Piezas piezaActual = pa.tablero.get(posicion);
@@ -104,7 +114,37 @@ public void guardarPartida (Partida pa){
 		setPosicion(idPartidaNueva, tipoPieza, nombrePieza, colorPieza, posicion);
 	}
 	
+	Conexion.getInstancia().releaseConn();
 	
+}
+
+private void actualizarTurno(int idPartida, int turnoActual) {
+	Statement stmt1 = null;
+	String	  update= null;
+	
+	try{
+		stmt1  = Conexion.getInstancia().getConn().createStatement();
+		update = "UPDATE partidas SET turno = " + Integer.toString(turnoActual) + " WHERE idPartida = " + Integer.toString(idPartida) + ";";
+		stmt1.execute(update);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	Conexion.getInstancia().releaseConn();
+	
+}
+
+private void borrarPosiciones(int idPartidaExistente) {
+	Statement stmt1 = null;
+	String	  delete= null;
+	
+	try{
+		stmt1  = Conexion.getInstancia().getConn().createStatement();
+		delete = "DELETE FROM `ajedrez`.`posiciones` WHERE posiciones.idPartida = " + Integer.toString(idPartidaExistente) + ";";
+		stmt1.execute(delete);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	Conexion.getInstancia().releaseConn();
 }
 
 private int setPartida(long dniBlancas, long dniNegras, int turno){
@@ -129,6 +169,7 @@ private int setPartida(long dniBlancas, long dniNegras, int turno){
 		
 		e.printStackTrace();
 	}
+	Conexion.getInstancia().releaseConn();
 	return idPartidaNueva;
 }
 
@@ -143,7 +184,30 @@ private void setPosicion(int idPartida, String tipoPieza, String nombrePieza, St
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
+	Conexion.getInstancia().releaseConn();
 	}
+
+public int recuperarTurnoPartida(int idPartida) {
+	ResultSet rs1   = null;
+	Statement stmt1 = null;
+	String 	  select;
+	int turno = 0;
+	
+	try {
+		stmt1  = Conexion.getInstancia().getConn().createStatement();
+		select = "SELECT * FROM partidas WHERE idPartida = " + Integer.toString(idPartida) + ";";
+		rs1    = stmt1.executeQuery(select);
+		if(rs1!=null && rs1.next()){
+			turno = rs1.getInt("turno");
+		}			
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	Conexion.getInstancia().releaseConn();
+	return turno;
+}
+
+
 
 }
 	

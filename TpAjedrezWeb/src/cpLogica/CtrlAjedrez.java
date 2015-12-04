@@ -29,6 +29,7 @@ public class CtrlAjedrez {
 			{
 			p.setPosiciones(dp.getPosiciones(idPartida));
 			p.cargarJugadores(dniBlancas, nombreBlancas, apellBlancas, dniNegras, nombreNegras, apellNegras);
+			p.setTurno(dp.recuperarTurnoPartida(idPartida));
 			};
 		return p.getTablero();
 			
